@@ -6,9 +6,14 @@ const TopBar = () => {
 
   return (
     <S.Container className="bg-white shadow-lg">
-      <button onClick={() => setMenu(!menu)} className="bg-gray-200 shadow-md">
-        x
-      </button>
+      {!menu && (
+        <button
+          onClick={() => setMenu(!menu)}
+          className="bg-gray-200 shadow-md"
+        >
+          x
+        </button>
+      )}
       <div className="logo">
         <h2>Admin</h2>
       </div>
