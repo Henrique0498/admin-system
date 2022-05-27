@@ -1,3 +1,4 @@
+import SideBar from 'components/SideBar'
 import TopBar from 'components/TopBar'
 import * as S from './styles'
 
@@ -8,8 +9,11 @@ interface ControlRenderProps {
 const ControlRender = ({ children }: ControlRenderProps) => {
   return (
     <S.Container>
-      <TopBar />
-      {children}
+      <SideBar />
+      <S.Body>
+        <TopBar />
+        {children}
+      </S.Body>
     </S.Container>
   )
 }

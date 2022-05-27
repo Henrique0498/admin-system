@@ -5,10 +5,17 @@ export const Container = styled.nav`
   height: 60px;
   position: fixed;
   top: 0;
-  background: ${({ theme }) => theme.colors.white};
   display: flex;
   align-items: center;
-  box-shadow: ${({ theme }) => theme.shadow.xSmall};
+  padding-left: 10px;
+
+  & > button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   .logo {
     display: flex;
@@ -23,8 +30,8 @@ export const Container = styled.nav`
       font-size: 2.4rem;
       background: linear-gradient(
         90deg,
-        ${({ theme }) => theme.colors.emerald[500]} 50%,
-        ${({ theme }) => theme.colors.emerald[600]} 50%
+        ${({ theme }) => theme.colors.gray[500]} 50%,
+        ${({ theme }) => theme.colors.gray[600]} 50%
       );
       background-size: 200%;
       transition: all ${({ theme }) => theme.animation.duration.xxSlow};
@@ -48,7 +55,7 @@ export const Container = styled.nav`
       align-items: center;
       border-radius: 50%;
       font-size: 3.2rem;
-      color: ${({ theme }) => theme.colors.emerald[500]};
+      color: ${({ theme }) => theme.colors.gray[500]};
       border: 2px solid currentColor;
       transition: all 0.8s;
       perspective: 800px;
@@ -66,7 +73,7 @@ export const Container = styled.nav`
       .icon {
         transition: all 0.8s;
         transform: rotate3d(10, 10, 10, 360deg);
-        color: ${({ theme }) => theme.colors.emerald[600]};
+        color: ${({ theme }) => theme.colors.gray[600]};
       }
     }
   }

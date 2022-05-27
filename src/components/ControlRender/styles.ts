@@ -6,4 +6,10 @@ export const Container = styled.div`
   overflow: auto;
   position: relative;
   background-color: ${({ theme }) => theme.colors.gray[200]};
+  display: flex;
+`
+export const Body = styled.div`
+  position: relative;
+  display: flex;
+  height: 100%;
 `

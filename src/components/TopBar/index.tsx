@@ -1,10 +1,15 @@
+import useGlobal from 'data/useContext/useGlobal'
 import * as S from './styles'
 
 const TopBar = () => {
+  const { menu, setMenu } = useGlobal()
+
   return (
-    <S.Container>
+    <S.Container className="bg-white shadow-lg">
+      <button onClick={() => setMenu(!menu)} className="bg-gray-200 shadow-md">
+        x
+      </button>
       <div className="logo">
-        <div className="icon">S</div>
         <h2>Admin</h2>
       </div>
     </S.Container>

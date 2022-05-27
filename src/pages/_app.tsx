@@ -5,6 +5,8 @@ import Head from 'next/head'
 import { ThemeProvider } from 'styled-components'
 import GlobalStyles from 'styles/global'
 import theme from '../styles/theme'
+import 'styles/global.css'
+import { GlobalProvider } from 'data/context/GlobalContext'
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -21,10 +23,12 @@ function App({ Component, pageProps }: AppProps) {
         />
       </Head>
       <ThemeProvider theme={theme}>
-        <ControlRender>
-          <Component {...pageProps} />
-        </ControlRender>
-        <GlobalStyles />
+        <GlobalProvider>
+          <ControlRender>
+            <Component {...pageProps} />
+          </ControlRender>
+          <GlobalStyles />
+        </GlobalProvider>
       </ThemeProvider>
     </>
   )
