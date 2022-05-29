@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { darken } from 'polished'
+import { lighten } from 'polished'
 
 import { ThemeType } from 'types/system'
 
@@ -11,8 +11,9 @@ export const Container = styled('nav')<ContainerProps>`
   ${({ themeSite }) => css`
     background: ${({ theme }) =>
       themeSite === 'dark'
-        ? darken(0.02, theme.colors.gray[800])
+        ? lighten(0.04, theme.colors.gray[900])
         : theme.colors.white};
+    transition: all ${({ theme }) => theme.animation.duration.medium};
   `}
 
   width: 100%;

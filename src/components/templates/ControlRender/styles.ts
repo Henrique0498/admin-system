@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import { shade } from 'polished'
 
 import { ThemeType } from 'types/system'
 
@@ -9,7 +10,9 @@ interface ContainerProps {
 export const Container = styled('div')<ContainerProps>`
   ${({ themeSite }) => css`
     background-color: ${({ theme }) =>
-      themeSite === 'dark' ? theme.colors.black : theme.colors.gray[200]};
+      themeSite === 'dark'
+        ? shade(0.8, theme.colors.gray[900])
+        : theme.colors.gray[200]};
   `}
 
   width: 100vw;

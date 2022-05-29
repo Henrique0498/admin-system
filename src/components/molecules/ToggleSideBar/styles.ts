@@ -24,12 +24,13 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    color: ${({ theme }) => theme.colors.violet[600]};
+    color: ${({ theme }) => theme.colors.blue[500]};
+    transition: all ease-in-out ${({ theme }) => theme.animation.duration.xFast};
     position: relative;
   }
 
   :hover .iconMenu {
-    color: ${({ theme }) => theme.colors.violet[700]};
+    color: ${({ theme }) => theme.colors.pink[500]};
   }
 
   .iconMenu::before,
