@@ -1,4 +1,4 @@
-import ControlRender from 'components/ControlRender'
+import ControlRender from 'components/templates/ControlRender'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 

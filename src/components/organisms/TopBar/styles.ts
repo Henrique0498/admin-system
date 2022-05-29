@@ -1,6 +1,20 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import { darken } from 'polished'
 
-export const Container = styled.nav`
+import { ThemeType } from 'types/system'
+
+interface ContainerProps {
+  themeSite: ThemeType
+}
+
+export const Container = styled('nav')<ContainerProps>`
+  ${({ themeSite }) => css`
+    background: ${({ theme }) =>
+      themeSite === 'dark'
+        ? darken(0.02, theme.colors.gray[800])
+        : theme.colors.white};
+  `}
+
   width: 100%;
   height: 60px;
   position: fixed;
