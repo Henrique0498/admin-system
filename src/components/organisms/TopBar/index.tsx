@@ -8,9 +8,11 @@ const TopBar = () => {
 
   return (
     <S.Container className="shadow-sm" themeSite={theme}>
-      {!menu && <ToggleSideBar />}
-      <div className="logo">
-        <h2>Admin System</h2>
+      <div className="flex items-center">
+        {!menu && <ToggleSideBar />}
+        <div className="logo">
+          <h2>Admin System</h2>
+        </div>
       </div>
 
       <ToggleTheme />

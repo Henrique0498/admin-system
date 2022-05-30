@@ -18,14 +18,14 @@ const ControlRender = ({ children }: ControlRenderProps) => {
 
   if (data) {
     return (
-      <S.Container themeSite={theme}>
+      <S.Container themeSite={theme} className={theme}>
         <S.SideBar>
           <SideBar />
         </S.SideBar>
         <S.Top>
           <TopBar />
         </S.Top>
-        <S.Body>{children}</S.Body>
+        <S.Body className="dark:text-gray-200">{children}</S.Body>
       </S.Container>
     )
   }

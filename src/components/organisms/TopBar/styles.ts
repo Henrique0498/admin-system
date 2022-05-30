@@ -18,10 +18,10 @@ export const Container = styled('nav')<ContainerProps>`
 
   width: 100%;
   height: 60px;
-  position: fixed;
   top: 0;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding-left: 10px;
 
   & > button {
@@ -51,6 +51,7 @@ export const Container = styled('nav')<ContainerProps>`
       background-size: 200%;
       transition: all ${({ theme }) => theme.animation.duration.xxSlow};
       background-position: 0%;
+      background-clip: border-box;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
