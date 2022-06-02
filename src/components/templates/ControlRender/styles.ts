@@ -7,6 +7,10 @@ interface ContainerProps {
   themeSite: ThemeType
 }
 
+interface SideBarProps {
+  menu: boolean
+}
+
 export const Container = styled('div')<ContainerProps>`
   ${({ themeSite }) => css`
     background-color: ${({ theme }) =>
@@ -22,10 +26,22 @@ export const Container = styled('div')<ContainerProps>`
   grid-template-columns: auto 1fr;
   grid-template-rows: 60px 1fr;
   grid-template-areas: 'sideBar head' 'sideBar body';
+
+  @media (max-width: 600px) {
+    grid-template-columns: 0px 1fr;
+  }
 `
 
-export const SideBar = styled.div`
-  grid-area: sideBar;
+export const SideBar = styled('div')<SideBarProps>`
+  ${({ menu }) => css`
+    grid-area: sideBar;
+    z-index: 2;
+    margin-left: ${menu ? '0' : '-60'}px;
+
+    @media (min-width: 420px) {
+      margin-left: 0;
+    }
+  `}
 `
 
 export const Top = styled.div`

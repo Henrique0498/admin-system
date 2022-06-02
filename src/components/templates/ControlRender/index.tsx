@@ -19,7 +19,7 @@ const ControlRender = ({ children }: ControlRenderProps) => {
   if (data) {
     return (
       <S.Container themeSite={theme} className={theme}>
-        <S.SideBar>
+        <S.SideBar menu={menu}>
           <SideBar />
         </S.SideBar>
         <S.Top>
