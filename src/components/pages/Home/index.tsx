@@ -67,14 +67,18 @@ const HomeTemplate = () => {
     }
   }
 
+  function handleClick() {
+    console.log('teste')
+  }
+
   return (
     <S.Container>
       <S.CardLarge className="w-ful bg-gray-50 dark:bg-gray-800 rounded-md shadow-sm hover:shadow-md relative">
         <S.Title>Rendimento Mensal</S.Title>
         <S.Describe>Total</S.Describe>
         <S.Button>
-          <Button>teste</Button>
-          <Button>teste</Button>
+          <Button onClick={handleClick}>teste</Button>
+          <Button onClick={handleClick}>teste</Button>
         </S.Button>
 
         <S.Graph>

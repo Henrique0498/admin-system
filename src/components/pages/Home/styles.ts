@@ -48,6 +48,14 @@ export const Button = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  button {
+    padding: 4px 20px;
+    width: 100px;
+    margin: 4px 0;
+    background: #000;
+    border-radius: 16px;
+  }
 `
 
 export const Graph = styled.div`
