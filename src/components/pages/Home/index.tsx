@@ -1,78 +1,78 @@
-import { Line } from 'react-chartjs-2'
-import * as S from './styles'
-import { transparentize } from 'polished'
-
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  Filler,
-  BarElement
-} from 'chart.js'
-import { getColorsGraph } from 'data/mock/colors'
-import Button from 'components/atoms/Button'
 import { useState } from 'react'
+import { transparentize } from 'polished'
+import dynamic from 'next/dynamic'
+const Chart = dynamic(() => import('react-apexcharts'), { ssr: false })
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  Filler,
-  BarElement
-)
+import Button from 'components/atoms/Button'
+import { getColorsGraph } from 'data/mock/colors'
+
+import * as S from './styles'
 
 const HomeTemplate = () => {
   const [active, setActive] = useState(false)
 
-  const data = {
-    data: {
-      labels: ['', '', '', '', '', '', ''],
-      datasets: [
-        {
-          label: '# of Votes',
-          data: [12, 19, 30, 50, 20, 30, 16],
-          backgroundColor: transparentize(0.3, getColorsGraph(600)[0]),
-          fill: true,
-          borderColor: getColorsGraph(600)[0],
-          borderWidth: 1
-        }
-      ]
-    },
-    options: {
-      layout: {
-        padding: -24
-      },
-      plugins: {
-        legend: {
-          display: false
-        }
-      },
-
-      tooltips: {
-        callbacks: {
-          label: function (tooltipItem: { yLabel: undefined }) {
-            return tooltipItem.yLabel
-          }
-        }
-      },
-      responsive: true,
-      maintainAspectRatio: true,
-      aspectRatio: 2
-    }
-  }
-
   function handleClick() {
     setActive(!active)
   }
+
+  const state = {
+    series: [
+      {
+        name: 'XYZ MOTORS',
+        data: [25, 26, 45, 48, 35, 21, 50]
+      }
+    ],
+    options: {
+      chart: {
+        stacked: false,
+        height: 350,
+        zoom: {
+          enabled: false
+        }
+      },
+      colors: getColorsGraph(700),
+      grid: {
+        show: true,
+        borderColor: transparentize(0.8, '#000000'),
+        strokeDashArray: 0,
+        position: 'back'
+      },
+      dataLabels: {
+        enabled: false
+      },
+      markers: {
+        size: 0
+      },
+      title: {},
+      fill: {
+        colors: getColorsGraph(700)
+      },
+      xaxis: {
+        categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+      }
+    }
+  }
+  //   yaxis: {
+  //     labels: {
+  //       formatter: function (val) {
+  //         return (val / 1000000).toFixed(0)
+  //       }
+  //     },
+  //     title: {
+  //       text: 'Price'
+  //     }
+  //   },
+  //   xaxis: {
+  //     type: 'datetime'
+  //   },
+  //   tooltip: {
+  //     shared: false,
+  //     y: {
+  //       formatter: function (val) {
+  //         return (val / 1000000).toFixed(0)
+  //       }
+  //     }
+  //   }
 
   return (
     <S.Container>
@@ -85,7 +85,7 @@ const HomeTemplate = () => {
         </S.Button>
 
         <S.Graph>
-          <Line {...data} />
+          <Chart type="area" options={state.options} series={state.series} />
         </S.Graph>
       </S.CardLarge>
     </S.Container>
