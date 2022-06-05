@@ -16,6 +16,7 @@ import {
 } from 'chart.js'
 import { getColorsGraph } from 'data/mock/colors'
 import Button from 'components/atoms/Button'
+import { useState } from 'react'
 
 ChartJS.register(
   CategoryScale,
@@ -30,13 +31,15 @@ ChartJS.register(
 )
 
 const HomeTemplate = () => {
+  const [active, setActive] = useState(false)
+
   const data = {
     data: {
-      labels: ['', '', '', '', '', ''],
+      labels: ['', '', '', '', '', '', ''],
       datasets: [
         {
           label: '# of Votes',
-          data: [12, 19, 30, 50, 20, 30],
+          data: [12, 19, 30, 50, 20, 30, 16],
           backgroundColor: transparentize(0.3, getColorsGraph(600)[0]),
           fill: true,
           borderColor: getColorsGraph(600)[0],
@@ -68,17 +71,17 @@ const HomeTemplate = () => {
   }
 
   function handleClick() {
-    console.log('teste')
+    setActive(!active)
   }
 
   return (
     <S.Container>
       <S.CardLarge className="w-ful bg-gray-50 dark:bg-gray-800 rounded-md shadow-sm hover:shadow-md relative">
         <S.Title>Rendimento Mensal</S.Title>
-        <S.Describe>Total</S.Describe>
-        <S.Button>
-          <Button onClick={handleClick}>teste</Button>
-          <Button onClick={handleClick}>teste</Button>
+        <S.SubTitle>Total</S.SubTitle>
+        <S.Button active={active}>
+          <Button onClick={handleClick}>Ultima Semana</Button>
+          <Button onClick={handleClick}>Ultimo Mês</Button>
         </S.Button>
 
         <S.Graph>

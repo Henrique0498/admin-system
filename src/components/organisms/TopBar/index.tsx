@@ -1,3 +1,4 @@
+import Title from 'components/atoms/Title'
 import ToggleSideBar from 'components/molecules/ToggleSideBar'
 import ToggleTheme from 'components/molecules/ToggleTheme'
 import useGlobal from 'data/useContext/useGlobal'
@@ -8,12 +9,9 @@ const TopBar = () => {
 
   return (
     <S.Container className="shadow-sm" themeSite={theme}>
-      <div className="flex items-center">
-        {!menu && <ToggleSideBar />}
-        <div className="logo">
-          <h2>Admin System</h2>
-        </div>
-      </div>
+      {!menu && <ToggleSideBar />}
+
+      <Title />
 
       <ToggleTheme />
     </S.Container>

@@ -8,6 +8,7 @@ interface ImageCustomProps {
   width?: number
   height?: number
   src: string
+  alt: string
   className?: string
   objectFit?: 'cover' | 'contain' | 'fill'
 }

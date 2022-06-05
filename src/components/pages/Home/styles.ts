@@ -1,4 +1,9 @@
-import styled from 'styled-components'
+import { transparentize } from 'polished'
+import styled, { css } from 'styled-components'
+
+interface ButtonProps {
+  active: boolean
+}
 
 export const Container = styled.div`
   height: 100%;
@@ -32,9 +37,10 @@ export const Title = styled.h2`
   font-size: 1.4em;
   font-weight: 600;
   padding: 16px 16px;
+  padding-bottom: 10px;
 `
 
-export const Describe = styled.p`
+export const SubTitle = styled.p`
   grid-area: subTitle;
   font-size: 1em;
   font-weight: 600;
@@ -42,19 +48,35 @@ export const Describe = styled.p`
   padding-top: 0;
 `
 
-export const Button = styled.div`
+export const Button = styled.div<ButtonProps>`
+  ${({ active }) => css`
+    ::before {
+      top: ${active ? '44' : '6'}px;
+    }
+  `}
   grid-area: button;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 
   button {
-    padding: 4px 20px;
-    width: 100px;
+    padding: 4px 0;
+    width: 120px;
     margin: 4px 0;
-    background: #000;
     border-radius: 16px;
+  }
+
+  ::before {
+    content: '';
+    position: absolute;
+    width: 110px;
+    height: 34px;
+    margin: 4px 0;
+    border-radius: 16px;
+    transition: all ${({ theme }) => theme.animation.duration.medium};
+    background: ${({ theme }) => transparentize(0.8, theme.colors.gray[500])};
   }
 `
 
