@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-page-custom-font */
 import ControlRender from 'components/templates/ControlRender'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
@@ -13,6 +14,10 @@ function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>React Avançado - Boilerplate</title>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        />
         <link rel="shortcut icon" href="/img/icon-512.png" />
         <link rel="apple-touch-icon" href="/img/icon-512.png" />
         <link rel="manifest" href="/manifest.json" />

@@ -1,12 +1,11 @@
 import { useState } from 'react'
-import { transparentize } from 'polished'
 import dynamic from 'next/dynamic'
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false })
 
 import Button from 'components/atoms/Button'
-import { getColorsGraph } from 'data/mock/colors'
 
 import * as S from './styles'
+import { state } from './mock'
 
 const HomeTemplate = () => {
   const [active, setActive] = useState(false)
@@ -14,65 +13,6 @@ const HomeTemplate = () => {
   function handleClick() {
     setActive(!active)
   }
-
-  const state = {
-    series: [
-      {
-        name: 'XYZ MOTORS',
-        data: [25, 26, 45, 48, 35, 21, 50]
-      }
-    ],
-    options: {
-      chart: {
-        stacked: false,
-        height: 350,
-        zoom: {
-          enabled: false
-        }
-      },
-      colors: getColorsGraph(700),
-      grid: {
-        show: true,
-        borderColor: transparentize(0.8, '#000000'),
-        strokeDashArray: 0,
-        position: 'back'
-      },
-      dataLabels: {
-        enabled: false
-      },
-      markers: {
-        size: 0
-      },
-      title: {},
-      fill: {
-        colors: getColorsGraph(700)
-      },
-      xaxis: {
-        categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
-      }
-    }
-  }
-  //   yaxis: {
-  //     labels: {
-  //       formatter: function (val) {
-  //         return (val / 1000000).toFixed(0)
-  //       }
-  //     },
-  //     title: {
-  //       text: 'Price'
-  //     }
-  //   },
-  //   xaxis: {
-  //     type: 'datetime'
-  //   },
-  //   tooltip: {
-  //     shared: false,
-  //     y: {
-  //       formatter: function (val) {
-  //         return (val / 1000000).toFixed(0)
-  //       }
-  //     }
-  //   }
 
   return (
     <S.Container>
