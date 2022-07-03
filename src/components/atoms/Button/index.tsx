@@ -1,10 +1,6 @@
-import * as S from './styles'
+import { ButtonProps } from './types'
 
-interface ButtonProps {
-  children: string | React.ReactNode
-  onClick: <T>(value?: T) => void
-  className?: string
-}
+import * as S from './styles'
 
 const Button = ({ children, onClick, className }: ButtonProps) => {
   return (
