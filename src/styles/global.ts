@@ -6,10 +6,15 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
+
+    :focus,
+    :hover{
+      outline:none;
+    }
+
   }
 
   html {
-    font-size: 62.5%;
   }
 
   html, body, #__next {
@@ -17,7 +22,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-size:  1.4rem;
+    font-size:  0.875rem;
     font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
   }
 `
