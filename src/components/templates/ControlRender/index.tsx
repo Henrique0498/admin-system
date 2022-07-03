@@ -4,6 +4,9 @@ import useGlobal from 'data/useContext/useGlobal'
 import { useEffect, useState } from 'react'
 import * as S from './styles'
 
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 interface ControlRenderProps {
   children: React.ReactNode
 }
@@ -16,8 +19,25 @@ const ControlRender = ({ children }: ControlRenderProps) => {
     setData(localStorage.getItem('menu') ?? '')
   }, [menu])
 
-  return children
-
+  if (data) {
+    return (
+      <>
+        {children}
+        <ToastContainer
+          position="bottom-left"
+          autoClose={5000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
+      </>
+    )
+  }
   if (data) {
     return (
       <S.Container themeSite={theme} className={theme}>
