@@ -45,6 +45,7 @@ export const Container = styled.button<ContainerProps>`
   `}
   border-radius: 4px;
   font-weight: 400;
+  user-select: none;
   background-size: 210%;
   transition: ${({ theme }) => theme.animation.duration.medium};
 
