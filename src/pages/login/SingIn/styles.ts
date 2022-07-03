@@ -7,6 +7,7 @@ export const Container = styled.div`
 `
 
 export const Header = styled.div`
+  user-select: none;
   h2 {
     font-size: 3rem;
     margin: 0;

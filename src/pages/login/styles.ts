@@ -70,6 +70,7 @@ export const SingInCard = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  user-select: none;
   color: ${({ theme }) => theme.colors.white};
 
   h2 {
@@ -92,4 +93,10 @@ export const SingInCard = styled.div`
       color: ${({ theme }) => theme.colors.violet[600]};
     }
   }
+`
+
+export const Toasty = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
 `
