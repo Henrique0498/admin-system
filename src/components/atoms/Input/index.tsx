@@ -1,7 +1,9 @@
-import { TextField, TextFieldProps } from '@mui/material'
+import { InputProps } from './types'
 
-const Input = (props: TextFieldProps) => {
-  return <TextField {...props} />
+import * as S from './styles'
+
+const Input = (props: InputProps) => {
+  return <S.Container {...props} />
 }
 
 export default Input
