@@ -9,6 +9,6 @@ export const Container = styled.div`
   grid-area: title;
 
   h2 {
-    font-size: 2rem;
+    font-size: 1.25rem;
   }
 `
