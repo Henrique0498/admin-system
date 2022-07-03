@@ -4,11 +4,11 @@ import * as S from './styles'
 import { SiLinkedin } from 'react-icons/si'
 import { FaGoogle, FaFacebookF } from 'react-icons/fa'
 
-const SingIn = () => {
+const SingUp = () => {
   return (
     <S.Container>
       <S.Header>
-        <h2>Entrar</h2>
+        <h2>Cadastre-se</h2>
       </S.Header>
       <S.FirebaseContainer>
         <S.FirebaseIcon className="shadow-sm">
@@ -22,16 +22,15 @@ const SingIn = () => {
         </S.FirebaseIcon>
       </S.FirebaseContainer>
       <S.Body>
-        <Input
-          id="outlined-basic"
-          label="Usuário ou email"
-          variant="outlined"
-        />
-        <Input id="outlined" label="Senha" variant="outlined" />
+        <Input id="outlined-singUP" label="Usuário" variant="outlined" />
+
+        <Input id="outlined-singUPa" label="E-mail" variant="outlined" />
+
+        <Input id="outlined-aSingUP" label="Senha" variant="outlined" />
 
         <div className="containerButton">
           <ButtonOutline size="large" color="violet">
-            Entrar
+            Cadastrar
           </ButtonOutline>
         </div>
       </S.Body>
@@ -39,4 +38,4 @@ const SingIn = () => {
   )
 }
 
-export default SingIn
+export default SingUp

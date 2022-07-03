@@ -16,6 +16,8 @@ const ControlRender = ({ children }: ControlRenderProps) => {
     setData(localStorage.getItem('menu') ?? '')
   }, [menu])
 
+  return children
+
   if (data) {
     return (
       <S.Container themeSite={theme} className={theme}>

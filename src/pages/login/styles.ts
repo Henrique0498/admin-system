@@ -1,4 +1,8 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+
+interface SingContainerProps {
+  path: 'singIn' | 'singUp'
+}
 
 export const Container = styled.div`
   height: 100vh;
@@ -20,26 +24,48 @@ export const RecoverPassword = styled.div`
   border-radius: 4px;
   width: 860px;
   height: 400px;
-  top: calc(50vh - 280px);
+  top: calc(50vh - 310px);
   transform: scale(0.9);
 `
 
-export const SingContainer = styled.div`
-  background-color: ${({ theme }) => theme.colors.gray[50]};
+export const SingContainer = styled.div<SingContainerProps>`
+  ${({ path }) => css`
+    background: linear-gradient(
+      90deg,
+      ${({ theme }) => theme.colors.gray[50]} 33.333%,
+      ${({ theme }) => theme.colors.violet[600]} 33.333%,
+      ${({ theme }) => theme.colors.violet[600]} 66.666%,
+      ${({ theme }) => theme.colors.gray[50]} 66.666%
+    );
+    background-size: 150%;
+    background-position: ${path === 'singIn' ? '0%' : '100%'};
+  `}
   border-radius: 4px;
   overflow: hidden;
+  transition: all 0.5s;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  transition: all 1s;
+  align-items: center;
+  grid-template-areas: 'container';
   position: absolute;
+
+  & > div {
+    grid-area: container;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    transition: all ${({ theme }) => theme.animation.duration.xxSlow};
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+
+  & > div.active {
+    z-index: 2;
+    opacity: 1;
+  }
 `
 
 export const SingInCard = styled.div`
-  background: linear-gradient(
-    135deg,
-    ${({ theme }) => theme.colors.violet[500]} 0%,
-    ${({ theme }) => theme.colors.violet[600]} 50%
-  );
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -59,10 +85,10 @@ export const SingInCard = styled.div`
     border-color: white;
     color: white;
     background: linear-gradient(90deg, transparent 50%, white 50%);
-    background-size: 210%;
+    background-size: 220%;
 
     :hover {
-      background-position: 100%;
+      background-position: 95%;
       color: ${({ theme }) => theme.colors.violet[600]};
     }
   }
