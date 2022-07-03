@@ -82,6 +82,7 @@ export const Button = styled.div<ButtonProps>`
 
 export const Graph = styled.div`
   grid-area: graph;
+  max-height: 400px;
 
   canvas {
     transform: translateY(6px) scaleX(1);
