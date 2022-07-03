@@ -1,7 +1,5 @@
-import { HiOutlineSun, HiOutlineMoon } from 'react-icons/hi'
-
-import Switch from 'components/atoms/Switch'
 import useGlobal from 'data/useContext/useGlobal'
+import Switch from '@mui/material/Switch'
 
 import * as S from './styles'
 
@@ -19,11 +17,9 @@ const ToggleTheme = () => {
   return (
     <S.Container>
       <Switch
-        onClick={handleSetTheme}
-        id="themeButton"
-        value={theme === 'light'}
-        valueOn={<HiOutlineSun />}
-        valueOff={<HiOutlineMoon />}
+        checked={theme === 'dark'}
+        onChange={handleSetTheme}
+        inputProps={{ 'aria-label': 'controlled' }}
       />
     </S.Container>
   )
