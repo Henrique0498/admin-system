@@ -8,6 +8,7 @@ import theme from '../styles/theme'
 import 'styles/global.css'
 import { GlobalProvider } from 'context/GlobalContext'
 import { AuthProvider } from 'context/GlobalAuth'
+import { ToastContainer } from 'react-toastify'
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -32,6 +33,18 @@ function App({ Component, pageProps }: AppProps) {
           </AuthProvider>
           <GlobalStyles />
         </GlobalProvider>
+        <ToastContainer
+          position="bottom-left"
+          autoClose={5000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
       </ThemeProvider>
     </>
   )

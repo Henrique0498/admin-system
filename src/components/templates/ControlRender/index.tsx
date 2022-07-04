@@ -4,7 +4,6 @@ import useGlobal from 'context/GlobalContext/useGlobal'
 import { useEffect, useState } from 'react'
 import * as S from './styles'
 
-import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 interface ControlRenderProps {
@@ -20,23 +19,7 @@ const ControlRender = ({ children }: ControlRenderProps) => {
   }, [menu])
 
   if (data) {
-    return (
-      <>
-        {children}
-        <ToastContainer
-          position="bottom-left"
-          autoClose={5000}
-          hideProgressBar
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-        />
-      </>
-    )
+    return <>{children}</>
   }
   if (data) {
     return (
