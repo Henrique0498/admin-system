@@ -40,6 +40,8 @@ export const Loader = styled.div`
     content: '';
     width: 100%;
     height: 0;
+    margin-top: 100%;
+    margin-bottom: 100%;
     padding-bottom: 100%;
     border-radius: 50%;
     background: currentColor;

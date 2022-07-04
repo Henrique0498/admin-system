@@ -5,8 +5,8 @@ interface AuthProviderProps {
 }
 
 interface AuthContextProps {
-  user?: UserType
-  setUser: Dispatch<SetStateAction<UserType | undefined>>
+  user?: UserType | null
+  setUser: Dispatch<SetStateAction<UserType | null>>
 }
 
 type UserType = {
@@ -19,7 +19,7 @@ type UserType = {
 const AuthContext = createContext<AuthContextProps | null>(null)
 
 export function AuthProvider(props: AuthProviderProps) {
-  const [user, setUser] = useState<UserType>()
+  const [user, setUser] = useState<UserType | null>(null)
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>

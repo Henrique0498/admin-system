@@ -8,6 +8,7 @@ import { AxiosError } from 'axios'
 
 import * as S from './styles'
 import { toast } from 'react-toastify'
+import useAuth from 'context/GlobalAuth/useAuth'
 
 type InputType = {
   error?: boolean
@@ -15,10 +16,12 @@ type InputType = {
 }
 
 type RequestType = {
-  user: string
-  name: string
-  token: string
-  photo: string
+  user: {
+    username: string
+    name: string
+    token: string
+    photo: string
+  }
 }
 
 type RequestErrorType = {
@@ -28,6 +31,7 @@ type RequestErrorType = {
 const SingIn = () => {
   const [user, setUser] = useState<InputType>({ value: '' })
   const [password, setPassword] = useState<InputType>({ value: '' })
+  const auth = useAuth()
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -42,7 +46,7 @@ const SingIn = () => {
           user: user.value,
           password: password.value
         })
-        .then((data) => console.log(data))
+        .then(({ data }) => auth?.setUser(data.user))
         .catch((err: AxiosError<RequestErrorType>) => {
           if (err.response?.data.message === 'Usuário não existe.') {
             setUser((props) => ({ ...props, error: true }))

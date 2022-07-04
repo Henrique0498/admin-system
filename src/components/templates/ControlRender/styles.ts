@@ -11,6 +11,25 @@ interface SideBarProps {
   menu: boolean
 }
 
+export const Redirect = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  user-select: none;
+
+  > div {
+    height: auto;
+  }
+
+  h3 {
+    font-size: 2rem;
+    font-weight: 500;
+  }
+`
+
 export const Container = styled('div')<ContainerProps>`
   ${({ themeSite }) => css`
     background-color: ${({ theme }) =>

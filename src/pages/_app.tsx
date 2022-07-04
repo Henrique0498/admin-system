@@ -1,14 +1,16 @@
-import ControlRender from 'components/templates/ControlRender'
 import { AppProps } from 'next/app'
+import { ToastContainer } from 'react-toastify'
+import { ThemeProvider } from 'styled-components'
 import Head from 'next/head'
 
-import { ThemeProvider } from 'styled-components'
-import GlobalStyles from 'styles/global'
-import theme from '../styles/theme'
-import 'styles/global.css'
-import { GlobalProvider } from 'context/GlobalContext'
 import { AuthProvider } from 'context/GlobalAuth'
-import { ToastContainer } from 'react-toastify'
+import { GlobalProvider } from 'context/GlobalContext'
+import ControlRender from 'components/templates/ControlRender'
+import theme from '../styles/theme'
+import GlobalStyles from 'styles/global'
+
+import 'styles/global.css'
+import 'react-toastify/dist/ReactToastify.css'
 
 function App({ Component, pageProps }: AppProps) {
   return (
