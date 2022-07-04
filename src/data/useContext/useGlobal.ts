@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import GlobalContext from 'data/context/GlobalContext'
+import GlobalContext from 'context/GlobalContext'
 
 const useGlobal = () => useContext(GlobalContext)
 
