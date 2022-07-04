@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ButtonOutline/> should render correctly 1`] = `
+.c0 {
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+  color: #a855f7;
+  border: 2px solid #a855f7;
+  background: linear-gradient( 90deg, transparent 50%, #a855f7 50% );
+  border-radius: 4px;
+  font-weight: 400;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-size: 210%;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.c0:focus,
+.c0:hover {
+  background-position: 98%;
+  color: #fff;
+}
+
+.c0:focus {
+  box-shadow: 0 0 0 2px rgba(139,92,246,0.5);
+}
+
+<button
+  class="c0"
+  color="purple"
+  type="button"
+>
+  Button
+</button>
+`
