@@ -7,6 +7,7 @@ import GlobalStyles from 'styles/global'
 import theme from '../styles/theme'
 import 'styles/global.css'
 import { GlobalProvider } from 'context/GlobalContext'
+import { AuthProvider } from 'context/GlobalAuth'
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -24,9 +25,11 @@ function App({ Component, pageProps }: AppProps) {
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalProvider>
-          <ControlRender>
-            <Component {...pageProps} />
-          </ControlRender>
+          <AuthProvider>
+            <ControlRender>
+              <Component {...pageProps} />
+            </ControlRender>
+          </AuthProvider>
           <GlobalStyles />
         </GlobalProvider>
       </ThemeProvider>
