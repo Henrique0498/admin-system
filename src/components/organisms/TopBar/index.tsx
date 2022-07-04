@@ -1,7 +1,7 @@
 import Title from 'components/atoms/Title'
 import ToggleSideBar from 'components/molecules/ToggleSideBar'
 import ToggleTheme from 'components/molecules/ToggleTheme'
-import useGlobal from 'data/useContext/useGlobal'
+import useGlobal from 'context/GlobalContext/useGlobal'
 import * as S from './styles'
 
 const TopBar = () => {

@@ -1,6 +1,6 @@
 import SideBar from 'components/organisms/SideBar'
 import TopBar from 'components/organisms/TopBar'
-import useGlobal from 'data/useContext/useGlobal'
+import useGlobal from 'context/GlobalContext/useGlobal'
 import { useEffect, useState } from 'react'
 import * as S from './styles'
 

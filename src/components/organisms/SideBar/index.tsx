@@ -5,7 +5,7 @@ import {
   HiChevronRight
 } from 'react-icons/hi'
 
-import useGlobal from 'data/useContext/useGlobal'
+import useGlobal from 'context/GlobalContext/useGlobal'
 
 import * as S from './styles'
 import ToggleSideBar from 'components/molecules/ToggleSideBar'
@@ -122,6 +122,7 @@ const SideBar = () => {
         <ImageCustom
           className="m-auto"
           src="/img/logo-sm.svg"
+          alt=""
           height={40}
           width={40}
         />
@@ -139,6 +140,7 @@ const SideBar = () => {
           <ImageCustom
             width={menu ? 90 : 44}
             height={menu ? 90 : 44}
+            alt=""
             src="/img/user/profile.jpg"
             objectFit="cover"
             className="transition-all"

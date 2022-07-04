@@ -1,4 +1,4 @@
-import useGlobal from 'data/useContext/useGlobal'
+import useGlobal from 'context/GlobalContext/useGlobal'
 import Switch from '@mui/material/Switch'
 
 import * as S from './styles'

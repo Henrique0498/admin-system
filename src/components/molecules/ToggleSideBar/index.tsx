@@ -1,5 +1,5 @@
 import Button from 'components/atoms/Button'
-import useGlobal from 'data/useContext/useGlobal'
+import useGlobal from 'context/GlobalContext/useGlobal'
 
 import * as S from './styles'
 
