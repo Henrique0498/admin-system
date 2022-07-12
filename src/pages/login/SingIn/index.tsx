@@ -4,11 +4,11 @@ import { SiLinkedin } from 'react-icons/si'
 import { FaGoogle, FaFacebookF } from 'react-icons/fa'
 import { FormEvent, useState } from 'react'
 import { api } from 'services/config'
-import { AxiosError } from 'axios'
 
 import * as S from './styles'
 import { toast } from 'react-toastify'
 import useAuth from 'context/GlobalAuth/useAuth'
+import { routerAuthentication } from 'services/routesApi'
 
 type InputType = {
   error?: boolean
@@ -16,16 +16,10 @@ type InputType = {
 }
 
 type RequestType = {
-  user: {
-    username: string
-    name: string
-    token: string
-    photo: string
-  }
-}
-
-type RequestErrorType = {
-  message: string
+  username: string
+  name: string
+  token: string
+  photo: string
 }
 
 const SingIn = () => {
@@ -41,21 +35,25 @@ const SingIn = () => {
     } else if (password.value === '') {
       setPassword((props) => ({ ...props, error: true }))
     } else {
-      await api
-        .post<RequestType>('api/v1/login/singIn', {
-          user: user.value,
-          password: password.value
-        })
-        .then(({ data }) => auth?.setUser(data.user))
-        .catch((err: AxiosError<RequestErrorType>) => {
-          if (err.response?.data.message === 'Usuário não existe.') {
-            setUser((props) => ({ ...props, error: true }))
-          } else {
-            setPassword((props) => ({ ...props, error: true }))
-          }
+      const { body, url } = routerAuthentication(user.value, password.value)
 
-          toast.error(err.response?.data.message)
+      await api
+        .post<RequestType>(url, body)
+        .then(({ data }) => auth?.setUser(data))
+        .catch((err) => {
+          console.log(err)
+
+          toast.error(err.response.data.error)
         })
+      // .catch((err: AxiosError<RequestErrorType>) => {
+      //   if (err.response?.data.message === 'Usuário não existe.') {
+      //     setUser((props) => ({ ...props, error: true }))
+      //   } else {
+      //     setPassword((props) => ({ ...props, error: true }))
+      //   }
+
+      //   toast.error(err.response?.data.message)
+      // })
     }
   }
 
