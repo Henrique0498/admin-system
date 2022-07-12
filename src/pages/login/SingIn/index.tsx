@@ -41,19 +41,8 @@ const SingIn = () => {
         .post<RequestType>(url, body)
         .then(({ data }) => auth?.setUser(data))
         .catch((err) => {
-          console.log(err)
-
-          toast.error(err.response.data.error)
+          toast.error(err.response.data.error ?? 'Error')
         })
-      // .catch((err: AxiosError<RequestErrorType>) => {
-      //   if (err.response?.data.message === 'Usuário não existe.') {
-      //     setUser((props) => ({ ...props, error: true }))
-      //   } else {
-      //     setPassword((props) => ({ ...props, error: true }))
-      //   }
-
-      //   toast.error(err.response?.data.message)
-      // })
     }
   }
 
