@@ -1,16 +1,13 @@
 import type { DatePickerProps } from 'antd'
-import { DatePicker as AntdDatePicker, Space } from 'antd'
 
 const onChange: DatePickerProps['onChange'] = (date, dateString) => {
   console.log(date, dateString)
 }
 
+import * as S from './styles'
+
 const DatePicker = () => {
-  return (
-    <Space direction="vertical">
-      <AntdDatePicker onChange={onChange} />
-    </Space>
-  )
+  return <S.Container onChange={onChange} />
 }
 
 export default DatePicker

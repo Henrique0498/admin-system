@@ -75,6 +75,7 @@ export const SingInCard = styled.div`
 
   h2 {
     font-size: 1.75rem;
+    color: currentColor;
   }
 
   p {
