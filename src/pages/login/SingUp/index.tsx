@@ -3,8 +3,12 @@ import Input from 'components/atoms/Input'
 import * as S from './styles'
 import { SiLinkedin } from 'react-icons/si'
 import { FaGoogle, FaFacebookF } from 'react-icons/fa'
+import { useState } from 'react'
+import DatePicker from 'components/atoms/DatePicker'
 
 const SingUp = () => {
+  const [pagination, setPagination] = useState('')
+
   return (
     <S.Container>
       <S.Header>
@@ -22,16 +26,37 @@ const SingUp = () => {
         </S.FirebaseIcon>
       </S.FirebaseContainer>
       <S.Body>
-        <Input id="outlined-singUP" label="Usuário" variant="outlined" />
+        {pagination === '' ? (
+          <S.Pagination>
+            <Input id="singUPUser" label="Usuário" variant="outlined" />
 
-        <Input id="outlined-singUPa" label="E-mail" variant="outlined" />
+            <Input id="singUPEmail" label="Senha" variant="outlined" />
 
-        <Input id="outlined-aSingUP" label="Senha" variant="outlined" />
+            <Input id="singUPPass" label="Confirmar Senha" variant="outlined" />
+          </S.Pagination>
+        ) : (
+          <S.Pagination>
+            <Input id="singUPUser" label="E-mail" variant="outlined" />
 
+            <DatePicker />
+
+            <Input id="singUPPass" label="Sexo" variant="outlined" />
+          </S.Pagination>
+        )}
         <div className="containerButton">
-          <ButtonOutline size="large" color="violet">
-            Cadastrar
-          </ButtonOutline>
+          {pagination === '' ? (
+            <ButtonOutline
+              size="large"
+              color="violet"
+              onClick={() => setPagination('finish')}
+            >
+              Próximo
+            </ButtonOutline>
+          ) : (
+            <ButtonOutline size="large" color="violet">
+              Cadastrar
+            </ButtonOutline>
+          )}
         </div>
       </S.Body>
     </S.Container>

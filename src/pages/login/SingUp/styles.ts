@@ -39,13 +39,15 @@ export const FirebaseIcon = styled.button`
 `
 
 export const Body = styled.form`
-  display: grid;
-  gap: 20px;
-
   .containerButton {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100px;
   }
+`
+
+export const Pagination = styled.div`
+  display: grid;
+  gap: 20px;
 `

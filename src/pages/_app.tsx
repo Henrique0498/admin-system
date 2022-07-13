@@ -11,6 +11,7 @@ import GlobalStyles from 'styles/global'
 
 import 'styles/global.css'
 import 'react-toastify/dist/ReactToastify.css'
+import 'antd/dist/antd.css'
 
 function App({ Component, pageProps }: AppProps) {
   return (
