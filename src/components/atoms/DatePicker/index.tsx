@@ -7,7 +7,7 @@ const onChange: DatePickerProps['onChange'] = (date, dateString) => {
 import * as S from './styles'
 
 const DatePicker = () => {
-  return <S.Container onChange={onChange} />
+  return <S.Container onChange={onChange} placeholder="" />
 }
 
 export default DatePicker

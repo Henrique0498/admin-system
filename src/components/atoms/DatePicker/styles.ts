@@ -6,6 +6,7 @@ export const Container = styled(DatePicker)`
   border-radius: 4px;
   border-color: ${({ theme }) => theme.colors.gray[400]};
   background: transparent;
+  padding: 4px 14px;
 
   :hover {
     border-color: ${({ theme }) => theme.colors.purple[500]};
@@ -14,7 +15,6 @@ export const Container = styled(DatePicker)`
   :focus-within {
     border: 2px solid ${({ theme }) => theme.colors.purple[500]};
     box-shadow: none;
-    padding: 4px 10px;
   }
 
   input {
