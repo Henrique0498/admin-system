@@ -13,10 +13,10 @@ export const Container = styled(DatePicker)<Props>`
       font-size: 1rem;
       position: absolute;
       transition: all ${({ theme }) => theme.animation.duration.medium};
-      font-weight: 300;
+      font-weight: 400;
       transform: translateX(-6px);
       background-color: ${({ theme }) => theme.colors.gray[50]};
-      color: ${({ theme }) => theme.colors.gray[700]};
+      color: ${({ theme }) => theme.colors.gray[500]};
       padding: 0 6px;
     }
   `}
@@ -69,7 +69,7 @@ export const Container = styled(DatePicker)<Props>`
     if (active) {
       return css`
         ::after {
-          transform: translateY(-28px) translateX(-10px) scale(0.8);
+          transform: translateY(-28px) translateX(-10%) scale(0.8);
           transition: all 0.4s;
         }
       `

@@ -1,21 +1,25 @@
-import type { DatePickerProps } from 'antd'
-import { useState } from 'react'
+import type { DatePickerProps as IDatePickerProps } from 'antd'
+import { Dispatch, SetStateAction } from 'react'
 
 import * as S from './styles'
 
-const DatePicker = () => {
-  const [state, setState] = useState('')
+interface DatePickerProps {
+  label: string
+  value: string
+  setValue: Dispatch<SetStateAction<string>>
+}
 
-  const onChange = (value: DatePickerProps['value']) => {
-    setState(value?.format() ?? '')
+const DatePicker = ({ setValue, value, label }: DatePickerProps) => {
+  const onChange = (value: IDatePickerProps['value']) => {
+    setValue(value?.format() ?? '')
   }
 
   return (
     <S.Container
       onChange={onChange}
       placeholder=""
-      label="Data"
-      active={state !== ''}
+      label={label}
+      active={value !== ''}
       format="DD/MM/YYYY"
     />
   )

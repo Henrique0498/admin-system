@@ -7,6 +7,7 @@ import { useState } from 'react'
 import DatePicker from 'components/atoms/DatePicker'
 
 const SingUp = () => {
+  const [date, setDate] = useState('')
   const [pagination, setPagination] = useState('')
 
   return (
@@ -38,7 +39,11 @@ const SingUp = () => {
           <S.Pagination>
             <Input id="singUPUser" label="E-mail" variant="outlined" />
 
-            <DatePicker />
+            <DatePicker
+              value={date}
+              setValue={setDate}
+              label="Data de nascimento"
+            />
 
             <Input id="singUPPass" label="Sexo" variant="outlined" />
           </S.Pagination>
