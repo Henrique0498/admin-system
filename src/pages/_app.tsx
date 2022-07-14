@@ -3,6 +3,8 @@ import { ToastContainer } from 'react-toastify'
 import { ThemeProvider } from 'styled-components'
 import Head from 'next/head'
 
+import { ptBR } from 'services/configAntd'
+
 import { AuthProvider } from 'context/GlobalAuth'
 import { GlobalProvider } from 'context/GlobalContext'
 import ControlRender from 'components/templates/ControlRender'
@@ -12,6 +14,7 @@ import GlobalStyles from 'styles/global'
 import 'styles/global.css'
 import 'react-toastify/dist/ReactToastify.css'
 import 'antd/dist/antd.css'
+import { ConfigProvider } from 'antd'
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -27,28 +30,32 @@ function App({ Component, pageProps }: AppProps) {
           content="A simple project starter to work with TypeScript, React, NextJS and Styled Components"
         />
       </Head>
-      <ThemeProvider theme={theme}>
-        <GlobalProvider>
-          <AuthProvider>
-            <ControlRender>
-              <Component {...pageProps} />
-            </ControlRender>
-          </AuthProvider>
-          <GlobalStyles />
-        </GlobalProvider>
-        <ToastContainer
-          position="bottom-left"
-          autoClose={5000}
-          hideProgressBar
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-        />
-      </ThemeProvider>
+
+      <ConfigProvider locale={ptBR}>
+        <ThemeProvider theme={theme}>
+          <GlobalProvider>
+            <AuthProvider>
+              <ControlRender>
+                <Component {...pageProps} />
+              </ControlRender>
+            </AuthProvider>
+            <GlobalStyles />
+          </GlobalProvider>
+
+          <ToastContainer
+            position="bottom-left"
+            autoClose={5000}
+            hideProgressBar
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+          />
+        </ThemeProvider>
+      </ConfigProvider>
     </>
   )
 }
