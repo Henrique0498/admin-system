@@ -12,12 +12,13 @@ export const Container = styled(DatePicker)<Props>`
       content: '${label}';
       font-size: 1rem;
       position: absolute;
-      transition: all ${({ theme }) => theme.animation.duration.medium};
+      transition: all ${({ theme }) => theme.animation.duration.medium}
+        ease-in-out;
       font-weight: 400;
-      transform: translateX(-6px);
       background-color: ${({ theme }) => theme.colors.gray[50]};
       color: ${({ theme }) => theme.colors.gray[500]};
       padding: 0 6px;
+      left: 0.5rem;
     }
   `}
 
@@ -49,7 +50,8 @@ export const Container = styled(DatePicker)<Props>`
 
     ::after {
       color: ${({ theme }) => theme.colors.purple[700]};
-      transform: translateY(-28px) translateX(-10px) scale(0.8);
+      font-size: 0.75rem;
+      transform: translateY(-28px);
     }
 
     ::before {
@@ -69,8 +71,8 @@ export const Container = styled(DatePicker)<Props>`
     if (active) {
       return css`
         ::after {
-          transform: translateY(-28px) translateX(-10%) scale(0.8);
-          transition: all 0.4s;
+          transform: translateY(-28px);
+          font-size: 0.75rem;
         }
       `
     }
