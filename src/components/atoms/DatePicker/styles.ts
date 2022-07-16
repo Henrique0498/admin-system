@@ -12,13 +12,13 @@ export const Container = styled(DatePicker)<Props>`
       content: '${label}';
       font-size: 1rem;
       position: absolute;
-      transition: all ${({ theme }) => theme.animation.duration.medium}
+      transition: all ${({ theme }) => theme.animation.duration.fast}
         ease-in-out;
       font-weight: 400;
       background-color: ${({ theme }) => theme.colors.gray[50]};
       color: ${({ theme }) => theme.colors.gray[500]};
-      padding: 0 6px;
-      left: 0.5rem;
+      padding: 0 4px;
+      left: 0.66rem;
     }
   `}
 
