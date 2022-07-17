@@ -1,11 +1,28 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  padding: 16px 32px;
   width: 430px;
+  padding: 16px 0;
+
+  ul.slick-dots {
+    button {
+      border-radius: 3px;
+      background: ${({ theme }) => theme.colors.blue[500]};
+      width: 5px;
+    }
+
+    li.slick-active {
+      button {
+        border-radius: 3px;
+        width: 5px;
+        background: ${({ theme }) => theme.colors.purple[500]};
+      }
+    }
+  }
 `
 
 export const Header = styled.div`
+  padding: 0 32px;
   h2 {
     font-size: 3rem;
     margin: 0;
@@ -48,6 +65,7 @@ export const Body = styled.form`
 `
 
 export const Pagination = styled.div`
+  padding: 32px;
   display: grid;
   gap: 20px;
 `

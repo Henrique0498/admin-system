@@ -60,7 +60,8 @@ export const Container = styled(DatePicker)<Props>`
   }
 
   input {
-    color: ${({ theme }) => theme.colors.gray[500]};
+    background: transparent;
+    font-size: 1rem;
   }
 
   span {
