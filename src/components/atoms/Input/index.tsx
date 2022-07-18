@@ -8,8 +8,6 @@ const Input = ({
   variant = 'outlined',
   ...props
 }: InputProps) => {
-  console.log(error)
-
   return (
     <S.Container
       onBlur={validate}

@@ -50,8 +50,6 @@ function useForm(valid?: keyof typeof typesValidate, isRequired?: boolean) {
   }
 
   function onChange({ currentTarget }: FormEvent<HTMLInputElement>) {
-    console.log(currentTarget.value)
-
     if (error) {
       validate(currentTarget.value)
     }
