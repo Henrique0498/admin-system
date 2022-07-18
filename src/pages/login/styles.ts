@@ -88,9 +88,11 @@ export const SingInCard = styled.div`
     color: white;
     background: linear-gradient(90deg, transparent 50%, white 50%);
     background-size: 220%;
+    background-position-y: bottom;
 
     :hover {
-      background-position: 95%;
+      background-position-x: 95%;
+      background-position-y: top;
       color: ${({ theme }) => theme.colors.violet[600]};
     }
   }

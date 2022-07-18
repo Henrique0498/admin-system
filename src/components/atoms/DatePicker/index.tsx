@@ -1,25 +1,22 @@
 import type { DatePickerProps as IDatePickerProps } from 'antd'
+import { Dispatch, FormEvent, SetStateAction } from 'react'
 
 import * as S from './styles'
 
 interface DatePickerProps {
   label: string
+  error: string
+  onChange: ({ currentTarget }: FormEvent<HTMLInputElement>) => void
+  setError: Dispatch<SetStateAction<string>>
+  setValue: Dispatch<SetStateAction<string>>
   value: string
-  setValue: React.Dispatch<React.SetStateAction<InputType>>
+  validate: () => boolean
+  variant?: 'outlined'
 }
 
-type InputType = {
-  error?: boolean
-  value: string
-}
-
-const DatePicker = ({ setValue, value, label }: DatePickerProps) => {
+const DatePicker = ({ value, label }: DatePickerProps) => {
   const onChange = (value: IDatePickerProps['value']) => {
-    setValue((props) => ({
-      ...props,
-      value: value?.format() ?? '',
-      error: false
-    }))
+    console.log(value)
   }
 
   return (

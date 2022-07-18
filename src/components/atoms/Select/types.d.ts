@@ -4,10 +4,14 @@ export interface SelectProps {
   value: string
   labelId: string
   label: string
-  setValue: (value: ChangeEventHandler<HTMLInputElement>) => void
   selects: SelectType[]
   color?: ColorsType
-  error?: boolean
+  error: string
+  onChange: ({ currentTarget }: FormEvent<HTMLInputElement>) => void
+  setError: Dispatch<SetStateAction<string>>
+  setValue: Dispatch<SetStateAction<string>>
+  validate: () => boolean
+  variant?: 'outlined'
 }
 
 export type SelectType = {

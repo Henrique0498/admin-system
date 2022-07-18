@@ -13,7 +13,7 @@ const Select = ({
   color
 }: SelectProps) => {
   return (
-    <S.Container colors={color} error={error}>
+    <S.Container colors={color} error={error ? true : false}>
       <InputLabel id={labelId}>{label}</InputLabel>
       <S.Select
         labelId={labelId}

@@ -3,7 +3,7 @@ import { TextField } from '@mui/material'
 import styled, { css } from 'styled-components'
 import theme from 'styles/theme'
 import { ColorsType } from 'types/system'
-import { InputProps } from './types'
+import { InputStylesProps } from './types'
 
 function getColor(error?: boolean, color: ColorsType = 'purple') {
   if (error) {
@@ -16,7 +16,7 @@ function getColor(error?: boolean, color: ColorsType = 'purple') {
   return theme.colors[color][600]
 }
 
-export const Container = styled(TextField)<InputProps>`
+export const Container = styled(TextField)<InputStylesProps>`
   ${({ error, colorCustom }) => css`
     & label {
       &.Mui-focused {
