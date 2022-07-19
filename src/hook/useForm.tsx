@@ -24,6 +24,10 @@ const typesValidate = {
   },
   gender: {
     regex: /(?:[m]|(?:[f])|(?:[s])){1,1}/,
+    message: 'O gênero informado está incorreto.'
+  },
+  date: {
+    regex: /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/,
     message: ''
   }
 }

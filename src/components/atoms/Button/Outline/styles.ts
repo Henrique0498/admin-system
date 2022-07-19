@@ -51,7 +51,7 @@ export const Container = styled.button<ContainerProps>`
 
   :focus,
   :hover {
-    background-position: 98%;
+    background-position-x: 98%;
     color: ${({ theme }) => theme.colors.white};
   }
 

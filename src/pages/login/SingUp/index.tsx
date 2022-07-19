@@ -11,13 +11,14 @@ import Select from 'components/atoms/Select'
 import useForm from 'hook/useForm'
 
 import * as S from './styles'
+import { toast } from 'react-toastify'
 
 const SingUp = () => {
   const username = useForm('username')
   const password = useForm('password')
   const passwordConfirm = useForm('password')
   const email = useForm('email')
-  const date = useForm('email')
+  const date = useForm('date')
   const gender = useForm('gender')
   const [pagination, setPagination] = useState(0)
   const ref = useRef<CarouselRef>(null)
@@ -29,6 +30,22 @@ const SingUp = () => {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault()
+    const data = [username, password, passwordConfirm, email, date, gender]
+
+    if (data.every((item) => item.validate())) {
+      console.log('foi')
+    } else {
+      let message = ''
+
+      data.map((item) => {
+        if (item.error) {
+          message = item.error
+        }
+        return item
+      })
+
+      toast.error(message ?? 'Por favor, preencha os campos corretamente.')
+    }
   }
 
   return (
@@ -75,16 +92,18 @@ const SingUp = () => {
           </div>
         </Carousel>
 
-        <div className="containerButton">
-          {pagination === 0 ? (
-            <ButtonOutline size="large" color="violet" onClick={() => goTo(1)}>
-              Próximo
-            </ButtonOutline>
-          ) : (
-            <ButtonOutline size="large" color="violet">
-              Cadastrar
-            </ButtonOutline>
-          )}
+        <div className={`containerButton ${pagination === 0 ? 'one' : ''}`}>
+          <ButtonOutline
+            size="large"
+            color="violet"
+            onClick={() => goTo(1)}
+            type="button"
+          >
+            Próximo
+          </ButtonOutline>
+          <ButtonOutline size="large" color="violet" type="submit">
+            Cadastrar
+          </ButtonOutline>
         </div>
       </S.Body>
     </S.Container>

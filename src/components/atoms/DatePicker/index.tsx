@@ -14,9 +14,10 @@ interface DatePickerProps {
   variant?: 'outlined'
 }
 
-const DatePicker = ({ value, label }: DatePickerProps) => {
+const DatePicker = ({ value, label, validate, setValue }: DatePickerProps) => {
   const onChange = (value: IDatePickerProps['value']) => {
-    console.log(value)
+    setValue(value?.format().split('T')[0] ?? '')
+    validate()
   }
 
   return (

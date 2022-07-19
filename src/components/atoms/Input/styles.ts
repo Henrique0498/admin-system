@@ -17,10 +17,10 @@ function getColor(error?: boolean, color: ColorsType = 'purple') {
 }
 
 export const Container = styled(TextField)<InputStylesProps>`
-  ${({ error, colorCustom }) => css`
+  ${({ error, color }) => css`
     & label {
       &.Mui-focused {
-        color: ${getColor(error, colorCustom)};
+        color: ${getColor(error, color)};
       }
     }
 
@@ -30,11 +30,11 @@ export const Container = styled(TextField)<InputStylesProps>`
       }
 
       &:hover fieldset {
-        border-color: ${getColor(error, colorCustom)};
+        border-color: ${getColor(error, color)};
       }
 
       &.Mui-focused fieldset {
-        border-color: ${getColor(error, colorCustom)};
+        border-color: ${getColor(error, color)};
       }
     }
   `}

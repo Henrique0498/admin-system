@@ -2,7 +2,7 @@ import { OutlinedTextFieldProps } from '@mui/material'
 import { ColorsType } from 'types/system'
 
 export interface InputProps {
-  colorCustom?: ColorsType
+  color?: ColorsType
   variant?: 'outlined'
   label?: string
   error: string
@@ -13,6 +13,9 @@ export interface InputProps {
   validate: () => boolean
 }
 
-export interface InputStylesProps extends OutlinedTextFieldProps {
-  colorCustom?: ColorsType
-}
+export type InputStylesProps = Modify<
+  OutlinedTextFieldProps,
+  {
+    color?: ColorsType
+  }
+>

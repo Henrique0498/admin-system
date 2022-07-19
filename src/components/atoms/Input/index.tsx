@@ -6,13 +6,17 @@ const Input = ({
   validate,
   error,
   variant = 'outlined',
-  ...props
+  color,
+  label,
+  onChange
 }: InputProps) => {
   return (
     <S.Container
       onBlur={validate}
       variant={variant}
-      {...props}
+      label={label}
+      color={color}
+      onChange={onChange}
       error={error ? true : false}
     />
   )

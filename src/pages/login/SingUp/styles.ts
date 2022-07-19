@@ -61,6 +61,30 @@ export const Body = styled.form`
     justify-content: center;
     align-items: center;
     height: 100px;
+
+    > * {
+      position: absolute;
+
+      :first-child {
+        display: none;
+      }
+
+      :last-child {
+        display: inherit;
+      }
+    }
+
+    &.one {
+      > * {
+        :first-child {
+          display: inherit;
+        }
+
+        :last-child {
+          display: none;
+        }
+      }
+    }
   }
 `
 
