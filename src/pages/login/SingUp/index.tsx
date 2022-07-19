@@ -12,6 +12,8 @@ import useForm from 'hook/useForm'
 
 import * as S from './styles'
 import { toast } from 'react-toastify'
+import { routerCreateUser } from 'services/routesApi'
+import { api } from 'services/config'
 
 const SingUp = () => {
   const username = useForm('username')
@@ -28,7 +30,7 @@ const SingUp = () => {
     ref?.current?.goTo(slide)
   }
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault()
     const data = [username, password, passwordConfirm, email, date, gender]
 
@@ -46,7 +48,20 @@ const SingUp = () => {
     } else if (password.value !== passwordConfirm.value) {
       toast.error('As senhas informadas estão incorretas.')
     } else {
-      console.log('foi')
+      const { body, url } = routerCreateUser(
+        username.value,
+        password.value,
+        email.value,
+        date.value,
+        gender.value
+      )
+
+      await api
+        .post(url, body)
+        .then(() => toast.success('Usuário criado com sucesso.'))
+        .catch((err) => {
+          toast.error(err.response.data.error ?? 'Error')
+        })
     }
   }
 
