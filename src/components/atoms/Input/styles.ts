@@ -1,4 +1,5 @@
 import { TextField } from '@mui/material'
+import { transparentize } from 'polished'
 
 import styled, { css } from 'styled-components'
 import theme from 'styles/theme'
@@ -38,4 +39,19 @@ export const Container = styled(TextField)<InputStylesProps>`
       }
     }
   `}
+
+  button.iconInput[type="button"] {
+    font-size: 1.25rem;
+    padding: 6px 12px;
+    color: ${({ theme }) => theme.colors.violet[600]};
+
+    :hover {
+      background-color: ${({ theme }) =>
+        transparentize(0.95, theme.colors.violet[600])};
+    }
+
+    > span * {
+      background: ${({ theme }) => theme.colors.violet[600]};
+    }
+  }
 `

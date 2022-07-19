@@ -6,6 +6,7 @@ export interface InputProps {
   variant?: 'outlined'
   label?: string
   error: string
+  type?: 'text' | 'password'
   setError: Dispatch<SetStateAction<string>>
   value: string
   setValue: Dispatch<SetStateAction<string>>

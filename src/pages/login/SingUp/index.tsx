@@ -72,9 +72,13 @@ const SingUp = () => {
             <S.Pagination>
               <Input label="Usuário" {...username} />
 
-              <Input label="Senha" {...password} />
+              <Input label="Senha" {...password} type="password" />
 
-              <Input label="Confirmar Senha" {...passwordConfirm} />
+              <Input
+                label="Confirmar Senha"
+                {...passwordConfirm}
+                type="password"
+              />
             </S.Pagination>
           </div>
 
