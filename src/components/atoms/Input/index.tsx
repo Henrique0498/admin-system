@@ -20,6 +20,30 @@ const Input = ({
     setTypeModified(typeModified === 'text' ? 'password' : 'text')
   }
 
+  function renderEndAdornment() {
+    if (type === 'password') {
+      return (
+        <InputAdornment position="end">
+          {type === 'password' && (
+            <Button
+              variant="text"
+              className="iconInput"
+              onClick={() => handleVisible()}
+            >
+              {typeModified === 'password' ? (
+                <MdOutlineVisibility />
+              ) : (
+                <MdOutlineVisibilityOff />
+              )}
+            </Button>
+          )}
+        </InputAdornment>
+      )
+    }
+
+    return null
+  }
+
   return (
     <S.Container
       onBlur={validate}
@@ -30,23 +54,7 @@ const Input = ({
       onChange={onChange}
       error={error ? true : false}
       InputProps={{
-        endAdornment: (
-          <InputAdornment position="end">
-            {type === 'password' && (
-              <Button
-                variant="text"
-                className="iconInput"
-                onClick={() => handleVisible()}
-              >
-                {typeModified === 'password' ? (
-                  <MdOutlineVisibility />
-                ) : (
-                  <MdOutlineVisibilityOff />
-                )}
-              </Button>
-            )}
-          </InputAdornment>
-        )
+        endAdornment: renderEndAdornment()
       }}
     />
   )
