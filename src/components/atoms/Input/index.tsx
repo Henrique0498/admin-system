@@ -27,7 +27,7 @@ const Input = ({
           {type === 'password' && (
             <Button
               variant="text"
-              className="iconInput"
+              className={`iconInput ${error ? 'error' : ''}`}
               onClick={() => handleVisible()}
             >
               {typeModified === 'password' ? (

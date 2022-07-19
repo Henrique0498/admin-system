@@ -53,5 +53,18 @@ export const Container = styled(TextField)<InputStylesProps>`
     > span * {
       background: ${({ theme }) => theme.colors.violet[600]};
     }
+
+    &.error {
+      color: ${({ theme }) => theme.colors.red[500]};
+
+      :hover {
+        background-color: ${({ theme }) =>
+          transparentize(0.95, theme.colors.red[500])};
+      }
+
+      > span * {
+        background: ${({ theme }) => theme.colors.red[500]};
+      }
+    }
   }
 `
