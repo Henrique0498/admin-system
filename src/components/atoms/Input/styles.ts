@@ -41,8 +41,6 @@ export const Container = styled(TextField)<InputStylesProps>`
   `}
 
   button.iconInput[type="button"] {
-    font-size: 1.25rem;
-    padding: 6px 12px;
     color: ${({ theme }) => theme.colors.violet[600]};
 
     :hover {
@@ -51,7 +49,7 @@ export const Container = styled(TextField)<InputStylesProps>`
     }
 
     > span * {
-      background: ${({ theme }) => theme.colors.violet[600]};
+      background: ${({ theme }) => theme.colors.violet[400]};
     }
 
     &.error {

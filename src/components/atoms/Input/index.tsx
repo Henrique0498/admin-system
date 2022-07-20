@@ -2,7 +2,7 @@ import { InputProps } from './types'
 
 import * as S from './styles'
 import { useState } from 'react'
-import { Button, InputAdornment } from '@mui/material'
+import { IconButton, InputAdornment } from '@mui/material'
 import { MdOutlineVisibility, MdOutlineVisibilityOff } from 'react-icons/md'
 
 const Input = ({
@@ -25,8 +25,7 @@ const Input = ({
       return (
         <InputAdornment position="end">
           {type === 'password' && (
-            <Button
-              variant="text"
+            <IconButton
               className={`iconInput ${error ? 'error' : ''}`}
               onClick={() => handleVisible()}
             >
@@ -35,7 +34,7 @@ const Input = ({
               ) : (
                 <MdOutlineVisibilityOff />
               )}
-            </Button>
+            </IconButton>
           )}
         </InputAdornment>
       )
