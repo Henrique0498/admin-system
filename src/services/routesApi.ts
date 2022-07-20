@@ -8,22 +8,4 @@ export function routerAuthentication(username: string, password: string) {
   }
 }
 
-export function routerCreateUser(
-  username: string,
-  password: string,
-  email: string,
-  date: string,
-  gender: string
-) {
-  return {
-    url: 'user',
-    body: {
-      name: 'henrique',
-      username,
-      password,
-      email,
-      date,
-      gender
-    }
-  }
-}
+export const POST_CREATE_USER = 'user'

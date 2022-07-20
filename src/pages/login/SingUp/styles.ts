@@ -89,7 +89,13 @@ export const Body = styled.form`
 `
 
 export const Pagination = styled.div`
+  height: 272px;
   padding: 32px;
   display: grid;
   gap: 20px;
+`
+export const Confirm = styled.div`
+  height: 132px;
+  display: flex;
+  align-items: end;
 `

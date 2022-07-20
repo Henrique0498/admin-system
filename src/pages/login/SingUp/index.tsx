@@ -1,9 +1,12 @@
 import React, { FormEvent, useRef, useState } from 'react'
 import { Carousel } from 'antd'
 import { CarouselRef } from 'antd/lib/carousel'
+import { toast } from 'react-toastify'
 import { SiLinkedin } from 'react-icons/si'
 import { FaGoogle, FaFacebookF } from 'react-icons/fa'
 
+import { POST_CREATE_USER } from 'services/routesApi'
+import { createUser } from 'services/login/singUp'
 import Input from 'components/atoms/Input'
 import ButtonOutline from 'components/atoms/Button/Outline'
 import DatePicker from 'components/atoms/DatePicker'
@@ -11,16 +14,16 @@ import Select from 'components/atoms/Select'
 import useForm from 'hook/useForm'
 
 import * as S from './styles'
-import { toast } from 'react-toastify'
-import { routerCreateUser } from 'services/routesApi'
-import { api } from 'services/config'
+import Checkbox from 'components/atoms/Checkbox'
+import ButtonLink from 'components/atoms/Button/Link'
 
 const SingUp = () => {
   const username = useForm('username')
+  const name = useForm('text')
   const password = useForm('password')
   const passwordConfirm = useForm('password')
   const email = useForm('email')
-  const date = useForm('date')
+  const birthDate = useForm('date')
   const gender = useForm('gender')
   const [pagination, setPagination] = useState(0)
   const ref = useRef<CarouselRef>(null)
@@ -32,7 +35,7 @@ const SingUp = () => {
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
-    const data = [username, password, passwordConfirm, email, date, gender]
+    const data = [username, password, passwordConfirm, email, birthDate, gender]
 
     if (!data.every((item) => item.validate())) {
       let message = ''
@@ -48,20 +51,18 @@ const SingUp = () => {
     } else if (password.value !== passwordConfirm.value) {
       toast.error('As senhas informadas estão incorretas.')
     } else {
-      const { body, url } = routerCreateUser(
-        username.value,
-        password.value,
-        email.value,
-        date.value,
-        gender.value
-      )
+      const { type, message } = await createUser({
+        url: POST_CREATE_USER,
+        name: '',
+        username: username.value,
+        email: email.value,
+        gender: gender.value,
+        passwordConfirm: passwordConfirm.value,
+        password: password.value,
+        birthDate: birthDate.value
+      })
 
-      await api
-        .post(url, body)
-        .then(() => toast.success('Usuário criado com sucesso.'))
-        .catch((err) => {
-          toast.error(err.response.data.error ?? 'Error')
-        })
+      toast[type](message)
     }
   }
 
@@ -99,16 +100,28 @@ const SingUp = () => {
 
           <div>
             <S.Pagination>
+              <Input label="Nome" {...name} />
+
               <Input label="E-mail" {...email} />
 
-              <DatePicker label="Data de nascimento" {...date} />
+              <DatePicker label="Data de nascimento" {...birthDate} />
+            </S.Pagination>
+          </div>
 
+          <div>
+            <S.Pagination>
               <Select
                 labelId="demo-simple-select-label"
                 label="Gênero"
                 selects={selects}
                 {...gender}
               />
+
+              <S.Confirm>
+                <Checkbox>
+                  Aceito os termos de contrato.<ButtonLink>Ler aqui</ButtonLink>
+                </Checkbox>
+              </S.Confirm>
             </S.Pagination>
           </div>
         </Carousel>
