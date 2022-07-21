@@ -16,6 +16,7 @@ import useForm from 'hook/useForm'
 import * as S from './styles'
 import Checkbox from 'components/atoms/Checkbox'
 import ButtonLink from 'components/atoms/Button/Link'
+import TermsOfServices from 'components/organisms/TermsOfService'
 
 const SingUp = () => {
   const username = useForm('username')
@@ -25,6 +26,8 @@ const SingUp = () => {
   const email = useForm('email')
   const birthDate = useForm('date')
   const gender = useForm('gender')
+  const [termsOfServices, setTermsOfServices] = useState(false)
+  const [termsOfServicesModal, setTermsOfServicesModal] = useState(false)
   const [pagination, setPagination] = useState(0)
   const ref = useRef<CarouselRef>(null)
 
@@ -118,9 +121,19 @@ const SingUp = () => {
               />
 
               <S.Confirm>
-                <Checkbox>
-                  Aceito os termos de contrato.<ButtonLink>Ler aqui</ButtonLink>
+                <Checkbox
+                  checked={termsOfServices}
+                  onChange={(value) => setTermsOfServices(value)}
+                >
+                  Aceito os termos de contrato.
+                  <ButtonLink onClick={() => setTermsOfServicesModal(true)}>
+                    Ler aqui
+                  </ButtonLink>
                 </Checkbox>
+                <TermsOfServices
+                  open={termsOfServicesModal}
+                  close={setTermsOfServicesModal}
+                />
               </S.Confirm>
             </S.Pagination>
           </div>
