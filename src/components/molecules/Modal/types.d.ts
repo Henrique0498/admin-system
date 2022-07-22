@@ -1,6 +1,6 @@
-import { ModalProps as ModalMuiProps } from '@mui/material'
-
-interface ModalProps extends ModalMuiProps {
+interface ModalProps {
   close: Dispatch<React.SetStateAction<boolean>>
+  titleHeader: string
   children?: string | ReactNode
+  size?: 'small' | 'medium' | 'large'
 }

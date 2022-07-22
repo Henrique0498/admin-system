@@ -14,7 +14,7 @@ const Modal = ({ children, ...props }: ModalProps) => {
     <S.Container open={props.open} onClose={handleCloseModal}>
       <S.CardModal className="bg-gray-50">
         <S.CardModalHead className="shadow-sm">
-          <Typography type="h4">Testado tal coisa</Typography>
+          <Typography type="h4">{props.titleHeader}</Typography>
           <ButtonIcon onClick={handleCloseModal} color="red">
             <IoClose fontSize={24} />
           </ButtonIcon>

@@ -4,7 +4,7 @@ import * as S from './styles'
 
 const TermsOfServices = ({ ...props }: TermsOfServices) => {
   return (
-    <Modal {...props}>
+    <Modal {...props} titleHeader="Termos e serviços">
       <S.Container>
         <p>
           Amet eu anim veniam irure proident proident elit aliqua sit irure
