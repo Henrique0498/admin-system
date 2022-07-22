@@ -95,8 +95,6 @@ function useForm(valid?: keyof typeof typesValidate, isRequired?: boolean) {
   function onChange({ currentTarget }: FormEvent<HTMLInputElement>) {
     const valueModified = mask(currentTarget.value)
 
-    console.log(valueModified)
-
     if (error) {
       validate(valueModified)
     }

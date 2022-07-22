@@ -39,7 +39,7 @@ const SingUp = () => {
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
-    const data = [username, password, email, birthDate, gender, numberPhone]
+    const data = [username, password, passwordConfirm, email, birthDate, gender]
 
     if (!data.every((item) => item.validate())) {
       let message = ''
@@ -67,7 +67,6 @@ const SingUp = () => {
         password: password.value,
         birthDate: birthDate.value
       })
-
       toast[type](message)
     }
   }
