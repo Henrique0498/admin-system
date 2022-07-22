@@ -9,32 +9,11 @@ interface ContainerProps {
 
 type SizeType = 'small' | 'medium' | 'large'
 
-function getPadding(size: SizeType) {
-  switch (size) {
-    case 'small':
-      return '0.375rem 0.75rem'
-    case 'large':
-      return '1rem 2rem'
-    default:
-      return '0.625rem 1.25rem'
-  }
-}
-
-function getFontSize(size: SizeType) {
-  switch (size) {
-    case 'small':
-      return '0.75rem'
-    case 'large':
-      return '1rem'
-    default:
-      return '0.875rem'
-  }
-}
-
 export const Container = styled.button<ContainerProps>`
-  ${({ size, color }) => css`
-    padding: ${getPadding(size)};
-    font-size: ${getFontSize(size)};
+  ${({ color }) => css`
+    font-size: initial;
+    padding: 0 0.25rem;
+    margin: 0 0.25rem;
     color: ${({ theme }) => theme.colors[color][500]};
 
     :hover {
@@ -43,18 +22,9 @@ export const Container = styled.button<ContainerProps>`
     }
   `}
   border-radius: 4px;
-  font-weight: 400;
+  font-weight: 500;
+  cursor: pointer;
   user-select: none;
   transition: ${({ theme }) => theme.animation.duration.medium};
   position: relative;
-
-  :focus,
-  :hover {
-    background-position-x: 98%;
-  }
-
-  :focus {
-    box-shadow: 0 0 0 2px
-      ${({ theme }) => transparentize(0.5, theme.colors.violet[500])};
-  }
 `
