@@ -11,6 +11,7 @@ const Input = ({
   variant = 'outlined',
   color,
   type = 'text',
+  value,
   label,
   onChange
 }: InputProps) => {
@@ -50,6 +51,7 @@ const Input = ({
       variant={variant}
       label={label}
       color={color}
+      value={value}
       onChange={onChange}
       error={error ? true : false}
       InputProps={{

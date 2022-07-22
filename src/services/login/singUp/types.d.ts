@@ -4,6 +4,7 @@ export interface CreteUserProps {
   username: string
   password: string
   passwordConfirm: string
+  numberPhone?: string
   email: string
   birthDate: string
   gender: string

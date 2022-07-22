@@ -95,7 +95,7 @@ export const Pagination = styled.div`
   gap: 20px;
 `
 export const Confirm = styled.div`
-  height: 132px;
+  height: 76px;
   display: flex;
   align-items: end;
 `

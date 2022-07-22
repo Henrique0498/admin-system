@@ -24,6 +24,7 @@ const SingUp = () => {
   const password = useForm('password')
   const passwordConfirm = useForm('password')
   const email = useForm('email')
+  const numberPhone = useForm('numberPhone')
   const birthDate = useForm('date')
   const gender = useForm('gender')
   const [termsOfServices, setTermsOfServices] = useState(false)
@@ -38,7 +39,7 @@ const SingUp = () => {
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
-    const data = [username, password, passwordConfirm, email, birthDate, gender]
+    const data = [username, password, email, birthDate, gender, numberPhone]
 
     if (!data.every((item) => item.validate())) {
       let message = ''
@@ -53,10 +54,12 @@ const SingUp = () => {
       toast.error(message ?? 'Por favor, preencha os campos corretamente.')
     } else if (password.value !== passwordConfirm.value) {
       toast.error('As senhas informadas estão incorretas.')
+    } else if (!termsOfServices) {
+      toast.error('É necessário aceitar os termos e serviços.')
     } else {
       const { type, message } = await createUser({
         url: POST_CREATE_USER,
-        name: '',
+        name: name.value,
         username: username.value,
         email: email.value,
         gender: gender.value,
@@ -119,6 +122,8 @@ const SingUp = () => {
                 selects={selects}
                 {...gender}
               />
+
+              <Input label="Telefone (opcional)" {...numberPhone} />
 
               <S.Confirm>
                 <Checkbox

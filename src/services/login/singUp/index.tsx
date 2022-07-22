@@ -18,7 +18,7 @@ export async function createUser({ url, ...props }: CreteUserProps) {
         const response: ResponseCreateUserProps = {
           type: 'error',
           message:
-            err.response?.data.error ??
+            err.response?.data?.error ??
             'Erro ao tentar criar o usuário, por favor, verifique os dados informados.'
         }
 
