@@ -2,18 +2,14 @@ import ButtonOutline from 'components/atoms/Button/Outline'
 import Input from 'components/atoms/Input'
 import { SiLinkedin } from 'react-icons/si'
 import { FaGoogle, FaFacebookF } from 'react-icons/fa'
-import { FormEvent, useState } from 'react'
+import { FormEvent } from 'react'
 import { api } from 'services/config'
 
 import * as S from './styles'
 import { toast } from 'react-toastify'
 import useAuth from 'context/GlobalAuth/useAuth'
 import { routerAuthentication } from 'services/routesApi'
-
-type InputType = {
-  error?: boolean
-  value: string
-}
+import useForm from 'hook/useForm'
 
 type RequestType = {
   username: string
@@ -23,17 +19,25 @@ type RequestType = {
 }
 
 const SingIn = () => {
-  const [user, setUser] = useState<InputType>({ value: '' })
-  const [password, setPassword] = useState<InputType>({ value: '' })
+  const user = useForm('username')
+  const password = useForm('password')
   const auth = useAuth()
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    const data = [user, password]
 
-    if (user.value === '') {
-      setUser((props) => ({ ...props, error: true }))
-    } else if (password.value === '') {
-      setPassword((props) => ({ ...props, error: true }))
+    if (!data.every((item) => item.validate())) {
+      let message = 'Por favor, preencha os campos corretamente.'
+
+      data.map((item) => {
+        if (item.error) {
+          message = item.error
+        }
+        return item
+      })
+
+      toast.error(message)
     } else {
       const { body, url } = routerAuthentication(user.value, password.value)
 
@@ -63,33 +67,8 @@ const SingIn = () => {
         </S.FirebaseIcon>
       </S.FirebaseContainer>
       <S.Body onSubmit={handleSubmit}>
-        <Input
-          {...user}
-          onChange={(e) =>
-            setUser((props) => ({
-              ...props,
-              value: e.target.value,
-              error: false
-            }))
-          }
-          id="singInUser"
-          label="Usuário ou email:"
-          variant="outlined"
-        />
-        <Input
-          {...password}
-          onChange={(e) =>
-            setPassword((props) => ({
-              ...props,
-              value: e.target.value,
-              error: false
-            }))
-          }
-          id="singInPassword"
-          type="password"
-          label="Senha:"
-          variant="outlined"
-        />
+        <Input label="Usuário ou email:" {...user} />
+        <Input type="password" label="Senha:" {...password} />
 
         <div className="containerButton">
           <ButtonOutline size="large" color="violet" type="submit">

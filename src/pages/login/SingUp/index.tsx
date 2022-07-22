@@ -42,7 +42,7 @@ const SingUp = () => {
     const data = [username, password, passwordConfirm, email, birthDate, gender]
 
     if (!data.every((item) => item.validate())) {
-      let message = ''
+      let message = 'Por favor, preencha os campos corretamente.'
 
       data.map((item) => {
         if (item.error) {
@@ -51,7 +51,7 @@ const SingUp = () => {
         return item
       })
 
-      toast.error(message ?? 'Por favor, preencha os campos corretamente.')
+      toast.error(message)
     } else if (password.value !== passwordConfirm.value) {
       toast.error('As senhas informadas estão incorretas.')
     } else if (!termsOfServices) {
