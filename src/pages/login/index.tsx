@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
 import ButtonOutline from 'components/atoms/Button/Outline'
-import SingIn from './SingIn'
-import SingUp from './SingUp'
+import SingIn from 'components/pages/Login/SingIn'
+import SingUp from 'components/pages/Login/SingUp'
 
 import * as S from './styles'
 
