@@ -8,4 +8,6 @@ export function routerAuthentication(username: string, password: string) {
   }
 }
 
+export const POST_AUTHENTICATION = 'authentication'
+
 export const POST_CREATE_USER = 'user'

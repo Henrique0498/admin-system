@@ -5,7 +5,7 @@ import { toast } from 'react-toastify'
 import { SiLinkedin } from 'react-icons/si'
 import { FaGoogle, FaFacebookF } from 'react-icons/fa'
 
-import { POST_CREATE_USER } from 'services/routesApi'
+import { POST_AUTHENTICATION, POST_CREATE_USER } from 'services/routesApi'
 import { createUser } from 'services/login/singUp'
 import Input from 'components/atoms/Input'
 import ButtonOutline from 'components/atoms/Button/Outline'
@@ -17,6 +17,8 @@ import * as S from './styles'
 import Checkbox from 'components/atoms/Checkbox'
 import ButtonLink from 'components/atoms/Button/Link'
 import TermsOfServices from 'components/organisms/TermsOfService'
+import { authentication } from 'services/login/singIn'
+import useAuth from 'context/GlobalAuth/useAuth'
 
 const SingUp = () => {
   const username = useForm('username')
@@ -31,6 +33,7 @@ const SingUp = () => {
   const [termsOfServicesModal, setTermsOfServicesModal] = useState(false)
   const [pagination, setPagination] = useState(0)
   const ref = useRef<CarouselRef>(null)
+  const auth = useAuth()
 
   const goTo = (slide: number) => {
     setPagination(1)
@@ -67,6 +70,22 @@ const SingUp = () => {
         password: password.value,
         birthDate: birthDate.value
       })
+
+      if (type === 'success') {
+        await authentication({
+          url: POST_AUTHENTICATION,
+          username: username.value,
+          password: password.value
+        })
+          .then(({ data }) => auth?.setUser(data))
+          .catch((err) =>
+            toast.error(
+              err.response.data.err ??
+                'Por favor, preencha os campos corretamente.'
+            )
+          )
+      }
+
       toast[type](message)
     }
   }
