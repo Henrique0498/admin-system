@@ -1,22 +1,16 @@
-import ButtonOutline from 'components/atoms/Button/Outline'
-import Input from 'components/atoms/Input'
 import { SiLinkedin } from 'react-icons/si'
 import { FaGoogle, FaFacebookF } from 'react-icons/fa'
 import { FormEvent } from 'react'
-import { api } from 'services/config'
+import { toast } from 'react-toastify'
+
+import { authentication } from 'services/login/singIn'
+import { POST_AUTHENTICATION } from 'services/routesApi'
+import ButtonOutline from 'components/atoms/Button/Outline'
+import Input from 'components/atoms/Input'
+import useForm from 'hook/useForm'
+import useAuth from 'context/GlobalAuth/useAuth'
 
 import * as S from './styles'
-import { toast } from 'react-toastify'
-import useAuth from 'context/GlobalAuth/useAuth'
-import { routerAuthentication } from 'services/routesApi'
-import useForm from 'hook/useForm'
-
-type RequestType = {
-  username: string
-  name: string
-  token: string
-  photo: string
-}
 
 const SingIn = () => {
   const user = useForm('username')
@@ -39,13 +33,14 @@ const SingIn = () => {
 
       toast.error(message)
     } else {
-      const { body, url } = routerAuthentication(user.value, password.value)
-
-      await api
-        .post<RequestType>(url, body)
+      await authentication({
+        url: POST_AUTHENTICATION,
+        username: user.value,
+        password: password.value
+      })
         .then(({ data }) => auth?.setUser(data))
         .catch((err) => {
-          toast.error(err.response.data.error ?? 'Error')
+          toast.error(err.response.data.error ?? 'Erro desconhecido')
         })
     }
   }

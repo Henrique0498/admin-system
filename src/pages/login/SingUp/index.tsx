@@ -77,12 +77,12 @@ const SingUp = () => {
           username: username.value,
           password: password.value
         })
-          .then(({ data }) => auth?.setUser(data))
+          .then(({ data }) => {
+            toast.success('Redirecionando...')
+            auth?.setUser(data)
+          })
           .catch((err) =>
-            toast.error(
-              err.response.data.err ??
-                'Por favor, preencha os campos corretamente.'
-            )
+            toast.error(err.response.data.err ?? 'Erro desconhecido.')
           )
       }
 
