@@ -5,15 +5,15 @@ interface SingContainerProps {
 }
 
 export const Container = styled.div`
-  height: 100vh;
+  min-height: 100vh;
+  padding: 1rem;
   display: flex;
-  justify-content: center;
   align-items: center;
   position: relative;
   position: relative;
   background-color: ${({ theme }) => theme.colors.gray[200]};
   background-image: url('/img/background/login.svg');
-  background-size: contain;
+  background-size: auto 100%;
   background-repeat: no-repeat;
   background-position: 100% 100%;
 `
@@ -24,7 +24,7 @@ export const RecoverPassword = styled.div`
   border-radius: 4px;
   width: 860px;
   height: 400px;
-  top: calc(50vh - 310px);
+  top: calc(50vh - 330px);
   transform: scale(0.9);
 `
 
@@ -63,6 +63,39 @@ export const SingContainer = styled.div<SingContainerProps>`
     z-index: 2;
     opacity: 1;
   }
+`
+
+export const ContainerMobileLogin = styled.div`
+  position: relative;
+  height: 595px;
+`
+
+export const LoginMobileCard = styled.div`
+  position: absolute;
+  border-radius: 4px;
+  background-color: ${({ theme }) => theme.colors.gray[50]};
+
+  &.first {
+    animation: flip-diagonal-1-bl 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955)
+      both;
+    z-index: 4;
+  }
+
+  @keyframes flip-diagonal-1-bl {
+    0% {
+      transform: rotate3d(1, 1, 0, 0deg);
+    }
+    100% {
+      transform: rotate3d(1, 1, 0, -180deg);
+    }
+  }
+`
+
+export const LoginDesktopCard = styled.div`
+  height: 595px;
+  display: flex;
+  justify-content: center;
+  position: relative;
 `
 
 export const SingInCard = styled.div`

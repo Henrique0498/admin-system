@@ -40,7 +40,7 @@ const SingIn = () => {
       })
         .then(({ data }) => auth?.setUser(data))
         .catch((err) => {
-          toast.error(err.response.data.error ?? 'Erro desconhecido')
+          toast.error(err?.response?.data?.error ?? 'Erro desconhecido')
         })
     }
   }
