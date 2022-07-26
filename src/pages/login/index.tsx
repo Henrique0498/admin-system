@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import ButtonOutline from 'components/atoms/Button/Outline'
 import SingIn from 'components/pages/Login/SingIn'
@@ -11,15 +11,23 @@ import ButtonLink from 'components/atoms/Button/Link'
 
 const Login = () => {
   const [path, setPath] = useState<'singIn' | 'singUp'>('singIn')
+  const [render, setRender] = useState(false)
   const mobile = useMedia('(max-width: 900px)')
 
   function handleChangePage() {
     if (path === 'singIn') {
       setPath('singUp')
+      setRender(true)
     } else {
       setPath('singIn')
     }
   }
+
+  useEffect(() => {
+    if (mobile) {
+      setRender(false)
+    }
+  }, [mobile])
 
   function controlRender() {
     if (mobile) {
@@ -27,7 +35,9 @@ const Login = () => {
         <Grid item xs={12} sm={8}>
           <S.ContainerMobileLogin>
             <S.LoginMobileCard
-              className={`shadow-md ${path === 'singIn' ? 'first' : 'two'}`}
+              className={`shadow-md ${
+                render ? (path === 'singIn' ? 'first' : 'two') : 'active'
+              }`}
             >
               <SingIn />
               <p>
@@ -37,7 +47,9 @@ const Login = () => {
             </S.LoginMobileCard>
 
             <S.LoginMobileCard
-              className={`shadow-md ${path === 'singUp' ? 'first' : 'two'}`}
+              className={`shadow-md ${
+                render ? (path === 'singUp' ? 'first' : 'two') : 'disabled'
+              }`}
             >
               <SingUp />
               <p>

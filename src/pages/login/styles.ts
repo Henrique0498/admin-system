@@ -45,19 +45,22 @@ export const SingContainer = styled.div<SingContainerProps>`
   overflow: hidden;
   transition: all 0.5s;
   display: grid;
-  align-items: center;
   grid-template-areas: 'container';
   position: absolute;
 
   & > div {
     grid-area: container;
-    display: grid;
-    grid-template-columns: 50% 50%;
+    display: flex;
+    align-items: center;
     transition: all ${({ theme }) => theme.animation.duration.xxSlow};
     z-index: 1;
     width: 100%;
     height: 100%;
     opacity: 0;
+
+    > * {
+      width: 50%;
+    }
   }
 
   & > div.active {
@@ -87,6 +90,15 @@ export const LoginMobileCard = styled.div`
   > p {
     margin-bottom: 2rem;
     padding: 0 2rem;
+  }
+
+  &.active {
+    z-index: 100;
+  }
+
+  &.disabled {
+    transform: rotate3d(1, 1, 0, -180deg) scale(0.1);
+    z-index: 1;
   }
 
   &.first {
