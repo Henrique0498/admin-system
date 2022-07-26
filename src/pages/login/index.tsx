@@ -7,6 +7,7 @@ import SingUp from 'components/pages/Login/SingUp'
 import * as S from './styles'
 import { Grid } from '@mui/material'
 import useMedia from 'hook/useMedia'
+import ButtonLink from 'components/atoms/Button/Link'
 
 const Login = () => {
   const [path, setPath] = useState<'singIn' | 'singUp'>('singIn')
@@ -29,14 +30,20 @@ const Login = () => {
               className={`shadow-md ${path === 'singIn' ? 'first' : 'two'}`}
             >
               <SingIn />
-              <button onClick={handleChangePage}>trocar</button>
+              <p>
+                Não possui cadastro?
+                <ButtonLink onClick={handleChangePage}>Cadastre-se</ButtonLink>
+              </p>
             </S.LoginMobileCard>
 
             <S.LoginMobileCard
               className={`shadow-md ${path === 'singUp' ? 'first' : 'two'}`}
             >
               <SingUp />
-              <button onClick={handleChangePage}>trocar</button>
+              <p>
+                Já tem uma conta?
+                <ButtonLink onClick={handleChangePage}>Entre aqui</ButtonLink>
+              </p>
             </S.LoginMobileCard>
           </S.ContainerMobileLogin>
         </Grid>
@@ -78,7 +85,7 @@ const Login = () => {
 
   return (
     <S.Container>
-      <Grid container justifyContent="center">
+      <Grid container justifyContent="center" maxWidth={1200}>
         {controlRender()}
       </Grid>
     </S.Container>

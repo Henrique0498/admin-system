@@ -93,7 +93,7 @@ const SingUp = () => {
   return (
     <S.Container>
       <S.Header>
-        <h2>Cadastre-se</h2>
+        <h2>Cadastrar</h2>
       </S.Header>
       <S.FirebaseContainer>
         <S.FirebaseIcon className="shadow-sm">

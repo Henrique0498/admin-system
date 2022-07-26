@@ -9,6 +9,7 @@ export const Container = styled.div`
   padding: 1rem;
   display: flex;
   align-items: center;
+  justify-content: center;
   position: relative;
   position: relative;
   background-color: ${({ theme }) => theme.colors.gray[200]};
@@ -51,7 +52,7 @@ export const SingContainer = styled.div<SingContainerProps>`
   & > div {
     grid-area: container;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 50% 50%;
     transition: all ${({ theme }) => theme.animation.duration.xxSlow};
     z-index: 1;
     width: 100%;
@@ -67,26 +68,54 @@ export const SingContainer = styled.div<SingContainerProps>`
 
 export const ContainerMobileLogin = styled.div`
   position: relative;
-  height: 595px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 700px;
 `
 
 export const LoginMobileCard = styled.div`
   position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   border-radius: 4px;
   background-color: ${({ theme }) => theme.colors.gray[50]};
+  text-align: center;
 
-  &.first {
-    animation: flip-diagonal-1-bl 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955)
-      both;
-    z-index: 4;
+  > p {
+    margin-bottom: 2rem;
+    padding: 0 2rem;
   }
 
-  @keyframes flip-diagonal-1-bl {
+  &.first {
+    animation: flip-start 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+  }
+
+  &.two {
+    animation: flip-end 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+  }
+
+  @keyframes flip-start {
     0% {
-      transform: rotate3d(1, 1, 0, 0deg);
+      transform: rotate3d(1, 1, 0, -180deg) scale(0.1);
+      z-index: 1;
     }
     100% {
-      transform: rotate3d(1, 1, 0, -180deg);
+      transform: rotate3d(1, 1, 0, 0deg) scale(1);
+      z-index: 100;
+    }
+  }
+
+  @keyframes flip-end {
+    0% {
+      transform: rotate3d(1, 1, 0, 0deg) scale(1);
+      z-index: 100;
+    }
+    100% {
+      transform: rotate3d(1, 1, 0, 180deg) scale(0.1);
+      z-index: 1;
     }
   }
 `

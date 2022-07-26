@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   padding: 16px 32px;
-  margin: auto 0;
 `
 
 export const Header = styled.div`
@@ -13,6 +12,13 @@ export const Header = styled.div`
     padding: 30px 10px 0;
     font-weight: 600;
     color: ${({ theme }) => theme.colors.violet[500]};
+  }
+
+  @media (max-width: 600px) {
+    h2 {
+      padding: 30px 0px 0;
+      font-size: 10vw;
+    }
   }
 `
 

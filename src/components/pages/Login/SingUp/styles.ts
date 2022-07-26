@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  width: 430px;
   padding: 16px 0;
+  width: 100%;
 
   ul.slick-dots {
     button {
@@ -23,12 +23,20 @@ export const Container = styled.div`
 
 export const Header = styled.div`
   padding: 0 32px;
+
   h2 {
     font-size: 3rem;
     margin: 0;
     padding: 30px 10px 0;
     font-weight: 600;
     color: ${({ theme }) => theme.colors.violet[500]};
+  }
+
+  @media (max-width: 600px) {
+    h2 {
+      padding: 30px 0px 0;
+      font-size: 10vw;
+    }
   }
 `
 
