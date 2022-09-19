@@ -1,68 +1,27 @@
 import { InputProps } from './types'
 
+import { ChangeEvent } from 'react'
+
 import * as S from './styles'
-import { useRef, useState } from 'react'
-import { IconButton, InputAdornment } from '@mui/material'
-import { MdOutlineVisibility, MdOutlineVisibilityOff } from 'react-icons/md'
 
-const Input = ({
-  validate,
-  error,
-  variant = 'outlined',
-  color,
-  type = 'text',
-  value,
-  label,
-  onChange
-}: InputProps) => {
-  const [typeModified, setTypeModified] = useState(type)
-
-  const ref = useRef<HTMLInputElement>(null)
-
-  function handleVisible() {
-    setTypeModified(typeModified === 'text' ? 'password' : 'text')
+const Input = ({ label }: InputProps) => {
+  function onChangeInput(e: ChangeEvent<HTMLInputElement>) {
+    e.target.className = changeClassNameFromInput(
+      e.target.value,
+      e.target.className
+    )
+    e.target.setAttribute('error', 'true')
   }
 
-  function renderEndAdornment() {
-    if (type === 'password') {
-      return (
-        <InputAdornment position="end">
-          {type === 'password' && (
-            <IconButton
-              className={`iconInput ${error ? 'error' : ''}`}
-              onClick={() => handleVisible()}
-            >
-              {typeModified === 'password' ? (
-                <MdOutlineVisibility />
-              ) : (
-                <MdOutlineVisibilityOff />
-              )}
-            </IconButton>
-          )}
-        </InputAdornment>
-      )
+  function changeClassNameFromInput(value: string, className: string) {
+    if (value === '') {
+      className = className.replace('isValid', 'isInvalid')
+    } else {
+      className = className.replace('isInvalid', 'isValid')
     }
 
-    return null
+    return className
   }
-
-  // return (
-  //   <S.Container
-  //     onBlur={validate}
-  //     type={typeModified}
-  //     variant={variant}
-  //     label={label}
-  //     color={color}
-  //     value={value}
-  //     onChange={onChange}
-  //     error={error ? true : false}
-  //     InputProps={{
-  //       endAdornment: renderEndAdornment()
-  //     }}
-  //   />
-  // )
-
-  console.log(ref.current?.value)
 
   return (
     <S.Container>
@@ -70,12 +29,11 @@ const Input = ({
         type="text"
         name="teste"
         id="TESTE"
-        ref={ref}
-        placeholder=" "
-        className="input_selector"
+        className="input_selector isInvalid"
+        onChange={(e) => onChangeInput(e)}
       />
       <fieldset>
-        <legend>teste teste</legend>
+        <legend>{label}</legend>
       </fieldset>
     </S.Container>
   )
