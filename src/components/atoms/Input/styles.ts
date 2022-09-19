@@ -60,6 +60,11 @@ export const Container = styled.div<InputStylesProps>`
     width: 100%;
   }
 
+  input.error,
+  input.error ~ * {
+    color: ${theme.colors.red[500]};
+  }
+
   input.isValid ~ *,
   &:focus-within fieldset {
     legend {
@@ -74,8 +79,5 @@ export const Container = styled.div<InputStylesProps>`
 
   &:focus-within fieldset {
     border: 2px solid currentColor;
-
-    legend {
-    }
   }
 `

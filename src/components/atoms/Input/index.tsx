@@ -4,13 +4,18 @@ import { ChangeEvent } from 'react'
 
 import * as S from './styles'
 
-const Input = ({ label }: InputProps) => {
-  function onChangeInput(e: ChangeEvent<HTMLInputElement>) {
-    e.target.className = changeClassNameFromInput(
-      e.target.value,
-      e.target.className
+const Input = ({ label, id, onChange, onBlur }: InputProps) => {
+  function handleOnChange(elementEvent: ChangeEvent<HTMLInputElement>) {
+    elementEvent.target.className = changeClassNameFromInput(
+      elementEvent.target.value,
+      elementEvent.target.className
     )
-    e.target.setAttribute('error', 'true')
+    // e.target.setAttribute('error', 'true')
+
+    onChange && onChange(elementEvent)
+  }
+  function handleOnBlur(elementEvent: ChangeEvent<HTMLInputElement>) {
+    onBlur && onBlur(elementEvent)
   }
 
   function changeClassNameFromInput(value: string, className: string) {
@@ -28,9 +33,10 @@ const Input = ({ label }: InputProps) => {
       <input
         type="text"
         name="teste"
-        id="TESTE"
+        id={id}
         className="input_selector isInvalid"
-        onChange={(e) => onChangeInput(e)}
+        onBlur={handleOnBlur}
+        onChange={handleOnChange}
       />
       <fieldset>
         <legend>{label}</legend>
