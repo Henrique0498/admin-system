@@ -20,7 +20,7 @@ const SingIn = () => {
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
-    console.log(getValue)
+    console.log(getValue())
 
     // const data = [user, password]
 
@@ -68,11 +68,17 @@ const SingIn = () => {
         <Input
           label="Usuário ou email:"
           {...register('singInUser', {
-            isRequired: true,
-            mask: 'cep'
+            isRequired: true
           })}
         />
-        <Input type="password" label="Senha:" {...register('singInPassword')} />
+
+        <Input
+          label="Senha:"
+          type="password"
+          {...register('singInPassword', {
+            isRequired: true
+          })}
+        />
 
         <div className="containerButton">
           <ButtonOutline size="large" color="violet" type="submit">

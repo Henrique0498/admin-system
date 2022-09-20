@@ -1,43 +1,112 @@
+import { FocusEvent, useRef, MouseEvent } from 'react'
+
 import { InputProps } from './types'
 
-import { ChangeEvent } from 'react'
-
 import * as S from './styles'
+import { HiEye, HiEyeOff } from 'react-icons/hi'
 
-const Input = ({ label, id, onChange, onBlur }: InputProps) => {
-  function handleOnChange(elementEvent: ChangeEvent<HTMLInputElement>) {
+const Input = ({
+  label,
+  color,
+  classNameContainer,
+  adornments,
+  onChange,
+  onBlur,
+  uOnChange,
+  uOnBlur,
+  type = 'text',
+  ...props
+}: InputProps) => {
+  const refContainer = useRef<HTMLInputElement>(null)
+  const data = useRef({ type: type })
+
+  function handleOnChange(elementEvent: FocusEvent<HTMLInputElement>) {
     elementEvent.target.className = changeClassNameFromInput(
       elementEvent.target.value,
       elementEvent.target.className
     )
-    // e.target.setAttribute('error', 'true')
-
     onChange && onChange(elementEvent)
+    uOnChange && uOnChange(elementEvent)
   }
-  function handleOnBlur(elementEvent: ChangeEvent<HTMLInputElement>) {
+
+  function handleOnBlur(elementEvent: FocusEvent<HTMLInputElement>) {
     onBlur && onBlur(elementEvent)
+    uOnBlur && uOnBlur(elementEvent)
   }
 
   function changeClassNameFromInput(value: string, className: string) {
     if (value === '') {
-      className = className.replace('isValid', 'isInvalid')
+      className = className.replace(' isValid', '')
     } else {
-      className = className.replace('isInvalid', 'isValid')
+      className = className + ' isValid'
     }
 
     return className
   }
 
+  function handleToggleTypeInput(element: MouseEvent<HTMLButtonElement>) {
+    const { currentTarget } = element
+
+    if (refContainer.current) {
+      if (data.current.type === 'password') {
+        refContainer.current.children[0].setAttribute('type', 'text')
+        data.current.type = 'text'
+        currentTarget.className += ' visibility'
+      } else {
+        refContainer.current.children[0].setAttribute('type', 'password')
+        data.current.type = 'password'
+        currentTarget.className = currentTarget.className.replace(
+          ' visibility',
+          ''
+        )
+      }
+    }
+  }
+
+  function renderButton() {
+    return (
+      <>
+        {adornments?.map((adornment, i) => (
+          <button
+            key={`key_input_button-adornment-${adornment.title}-${i}`}
+            onClick={adornment.function}
+            title={adornment.title}
+            type="button"
+          >
+            {adornment.children}
+          </button>
+        ))}
+
+        {type === 'password' && (
+          <button
+            onClick={handleToggleTypeInput}
+            type="button"
+            className="input_button input_button-icon-password"
+          >
+            <div>
+              <HiEye size={20} />
+              <HiEyeOff size={20} />
+            </div>
+          </button>
+        )}
+      </>
+    )
+  }
+
   return (
-    <S.Container>
+    <S.Container
+      className={classNameContainer}
+      color={color}
+      ref={refContainer}
+    >
       <input
-        type="text"
-        name="teste"
-        id={id}
-        className="input_selector isInvalid"
+        {...props}
+        type={data.current.type}
+        className={`input_selector ${props.className ?? ''} isInvalid`}
         onBlur={handleOnBlur}
         onChange={handleOnChange}
       />
+      <S.InputButtonsAdornment>{renderButton()}</S.InputButtonsAdornment>
       <fieldset>
         <legend>{label}</legend>
       </fieldset>

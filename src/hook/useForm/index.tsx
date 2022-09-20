@@ -2,55 +2,32 @@
 import { ChangeEvent, useCallback, useRef } from 'react'
 import * as mask from './masks'
 
-const typesValidate = {
-  email: {
-    regex:
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-    message: 'Preencha um e-mail válido.'
-  },
-  number: {
-    regex: /^\d+$/,
-    message: 'Utilize somente números.'
-  },
-  text: {
-    regex: /^[a-záàâãéèêíïóôõöúçñ ]+$/i,
-    message: 'Somente letras são permitidas.'
-  },
-  password: {
-    regex: /^(?=.*[a-z])[0-9a-zA-Z$*&@#!%()\-\\+.\\/\\]{8,}$/i,
-    message: 'A senha precisa ter pelo menos 8 caracteres.'
-  },
-  username: {
-    regex: /^[a-záàâãéèêíïóôõöúçñ_\d]+$/i,
-    message: 'Usuário invalido.'
-  },
-  gender: {
-    regex: /(?:[m]|(?:[f])|(?:[s])){1,1}/,
-    message: 'O gênero informado está incorreto.'
-  },
-  date: {
-    regex: /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/,
-    message: 'A data informada está incorreta.'
-  },
-  numberPhone: {
-    regex: /(\(\d{2}\)\s)(\d{4,5}\-\d{4})/,
-    message: 'Numero de telefone está incorreto.'
-  }
+import * as valid from './validation'
+
+type TypeConfigRegiste = {
+  isRequired?: boolean
+  mask?: keyof typeof masks
+  typeValidation?: TypeKeysValidation
+}
+
+type TypeKeysValidation = keyof typeof validData
+
+type TypeReturnGetValue = {
+  value: string
+  error: boolean
+  message: string
 }
 
 const masks = {
   cep: mask.maskCep
 }
 
-type TypeConfigRegiste = {
-  type?: 'text' | 'password'
-  isRequired?: boolean
-  mask?: keyof typeof masks
+const validData = {
+  cep: valid.validateCep,
+  email: valid.validateEmail
 }
 
 interface TypeData extends TypeConfigRegiste {
-  type: 'text' | 'password'
-  typeValidation?: 'cep' | 'email'
   id: string
   value: string
   error: boolean
@@ -60,25 +37,28 @@ interface TypeData extends TypeConfigRegiste {
 }
 
 function useForm() {
-  console.log(typesValidate)
   const data = useRef<{ [key: string]: TypeData }>({})
 
-  const validateFromType = useCallback((type: string, value: string) => {
-    console.log(type, value)
+  //validação por tipo
+  const validateFromType = useCallback(
+    (type: TypeKeysValidation, value: string) => {
+      return validData[type](value)
+    },
+    []
+  )
 
-    return false
-  }, [])
-
+  //validação individual de cada registro feito
   const validate = useCallback(
     (data: TypeData) => {
-      if (data.value === '') {
+      if (data.value === '' && data.isRequired) {
+        console.log(data)
         return {
           error: true,
           message: 'Campo Obrigatório'
         }
       } else if (
         data.typeValidation &&
-        validateFromType(data.typeValidation, data.value)
+        !validateFromType(data.typeValidation, data.value)
       ) {
         return {
           error: true,
@@ -93,6 +73,28 @@ function useForm() {
     },
     [validateFromType]
   )
+
+  //função pra validar se o campo está preenchido
+  const validateRequired = useCallback((element: HTMLInputElement) => {
+    const inputPropsCurrent = data.current[element.id]
+
+    if (element.value === '') {
+      inputPropsCurrent.error = true
+      inputPropsCurrent.message = 'Campo obrigatório'
+      element.className = element.className + ' error'
+    } else {
+      inputPropsCurrent.error = false
+      inputPropsCurrent.message = ''
+      element.className = element.className.replace(' error', '')
+    }
+  }, [])
+
+  //testa todos os elementos
+  const validationAll = useCallback(() => {
+    const keyOfsData = Object.keys(data.current)
+
+    return keyOfsData.every((key) => validate(data.current[key]).error)
+  }, [validate])
 
   //função executada quando o usuário tira o focus do input
   const onBlur = useCallback(
@@ -114,21 +116,6 @@ function useForm() {
     },
     [validate]
   )
-
-  //função pra validar se o campo está preenchido
-  const validateRequired = useCallback((element: HTMLInputElement) => {
-    const inputPropsCurrent = data.current[element.id]
-
-    if (element.value === '') {
-      inputPropsCurrent.error = true
-      inputPropsCurrent.message = 'Campo obrigatório'
-      element.className = element.className + ' error'
-    } else {
-      inputPropsCurrent.error = false
-      inputPropsCurrent.message = ''
-      element.className = element.className.replace(' error', '')
-    }
-  }, [])
 
   //função pra aplicar mascara
   const applyMask = useCallback((element: HTMLInputElement) => {
@@ -153,9 +140,6 @@ function useForm() {
       const inputPropsCurrent = data.current[target.id]
 
       inputPropsCurrent?.mask && applyMask(target)
-
-      console.log(target.value)
-
       inputPropsCurrent.isRequired && validateRequired(target)
 
       data.current[target.id] = {
@@ -167,12 +151,31 @@ function useForm() {
     [validateRequired, applyMask]
   )
 
+  //retorna todos os valores
+  const getValue = useCallback(() => {
+    const keysData = Object.keys(data.current)
+    const resultDataModified: { [key: string]: TypeReturnGetValue } = {}
+
+    keysData.map((key) => {
+      const inputPropsCurrent = data.current[key]
+
+      resultDataModified[key] = {
+        value: inputPropsCurrent.value,
+        error: inputPropsCurrent.error,
+        message: inputPropsCurrent.message
+      }
+
+      return null
+    })
+
+    return resultDataModified
+  }, [])
+
   //registra o input
   const register = useCallback(
     (id: string, config: TypeConfigRegiste = {}) => {
       data.current[id] = {
         ...config,
-        type: config.type ?? 'text',
         validate: () => true,
         id: id,
         error: false,
@@ -183,14 +186,14 @@ function useForm() {
 
       return {
         id: id,
-        onChange,
-        onBlur
+        uOnChange: onChange,
+        uOnBlur: onBlur
       }
     },
     [onChange, onBlur]
   )
 
-  return { register, getValue: data }
+  return { register, getValue, validationAll }
 }
 
 export default useForm

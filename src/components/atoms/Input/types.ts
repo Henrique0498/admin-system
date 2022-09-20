@@ -1,22 +1,21 @@
-import { ChangeEvent, Dispatch, SetStateAction } from 'react'
+import { ChangeEvent, InputHTMLAttributes } from 'react'
 import { ColorsType } from 'types/system'
 
-export interface InputProps {
-  color?: ColorsType
-  variant?: 'outlined'
-  id?: string
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string
-  error?: string
-  type?: 'text' | 'password'
-  setError?: Dispatch<SetStateAction<string>>
-  value?: string
-  setValue?: Dispatch<SetStateAction<string>>
-  onChange?: (elementEvent: ChangeEvent<HTMLInputElement>) => void
-  onBlur?: (elementEvent: ChangeEvent<HTMLInputElement>) => void
-  validate?: () => boolean
+  classNameContainer?: string
+  color?: ColorsType
+  adornments?: TypeAdornment[]
+  uOnChange?: (elementEvent: ChangeEvent<HTMLInputElement>) => void
+  uOnBlur?: (elementEvent: ChangeEvent<HTMLInputElement>) => void
+}
+
+type TypeAdornment = {
+  title: string
+  function: () => void
+  children: React.ReactNode
 }
 
 export type InputStylesProps = {
   color?: ColorsType
-  error?: boolean
 }
