@@ -20,33 +20,34 @@ export const Container = styled.div<InputStylesProps>`
     }
   `}
 
+  display: flex;
   height: 3.375rem;
   overflow: hidden;
   position: relative;
   width: 100%;
-  display: flex;
 
   fieldset {
-    color: ${theme.colors.gray[500]};
     border: 0.063rem solid currentColor;
     box-sizing: border-box;
     border-radius: 0.25rem;
     bottom: 0;
+    color: ${theme.colors.gray[500]};
     height: 3.375rem;
     position: absolute;
+    text-align: start;
     width: 100%;
     z-index: -1;
-    text-align: start;
 
     legend {
-      transition: 200ms ease-in-out;
-      transform: translateY(1.188rem) translateX(0.75rem);
       font-size: 1rem;
+      float: none;
       font-weight: 400;
-      width: 0rem;
       height: 1.313rem;
       padding: 0rem;
+      transform: translateY(1.188rem) translateX(0.75rem);
+      transition: 200ms ease-in-out;
       white-space: nowrap;
+      width: 0rem;
     }
   }
 
@@ -54,9 +55,9 @@ export const Container = styled.div<InputStylesProps>`
     background-color: transparent;
     border-radius: 0.25rem;
     color: currentColor;
-    height: calc(100% - 0.875rem);
     flex: 1;
     font-weight: 400;
+    height: calc(100% - 0.875rem);
     margin-top: 0.75rem;
     margin-left: 0.125rem;
     margin-right: 0.125rem;
@@ -95,15 +96,15 @@ export const Container = styled.div<InputStylesProps>`
 `
 
 export const InputButtonsAdornment = styled.div`
-  margin-top: 0.625rem;
-  height: calc(100% - 0.625rem);
-  display: flex;
   align-items: center;
+  display: flex;
+  height: calc(100% - 0.625rem);
+  margin-top: 0.625rem;
 
   > .input_button {
+    border-radius: 50%;
     margin: 0rem 0.25rem;
     padding: 0.375rem;
-    border-radius: 50%;
 
     :hover {
       background: ${transparentize(0.9, theme.colors.gray[500])};
@@ -116,9 +117,9 @@ export const InputButtonsAdornment = styled.div`
 
   .input_button-icon-password {
     > div {
-      width: 1.25rem;
       height: 1.25rem;
       position: relative;
+      width: 1.25rem;
 
       svg {
         position: absolute;

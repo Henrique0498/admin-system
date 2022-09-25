@@ -5,7 +5,7 @@ import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
 
 import * as S from './styles'
 
-const Input = ({
+export function Input({
   label,
   color,
   classNameContainer,
@@ -16,7 +16,7 @@ const Input = ({
   uOnBlur,
   type = 'text',
   ...props
-}: InputProps) => {
+}: InputProps) {
   const refContainer = useRef<HTMLInputElement>(null)
   const data = useRef({ type: type })
 
@@ -116,5 +116,3 @@ const Input = ({
     </S.Container>
   )
 }
-
-export default Input
