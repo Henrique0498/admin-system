@@ -14,26 +14,24 @@ function getColor(color: ColorsType = 'purple') {
 
 export const Container = styled.div<InputStylesProps>`
   ${({ color }) => css`
-    &:focus-within input,
     &:focus-within fieldset,
-    :hover input,
     :hover fieldset {
       color: ${getColor(color)};
     }
   `}
 
-  color: ${theme.colors.gray[500]};
-  height: 60px;
+  height: 54px;
   overflow: hidden;
   position: relative;
   width: 100%;
   display: flex;
 
   fieldset {
+    color: ${theme.colors.gray[500]};
     border: 1px solid currentColor;
     border-radius: 4px;
     bottom: 0;
-    height: 60px;
+    height: 54px;
     position: absolute;
     width: 100%;
     z-index: -1;
@@ -41,23 +39,33 @@ export const Container = styled.div<InputStylesProps>`
 
     legend {
       transition: 200ms ease-in-out;
-      transform: translateY(23px) translateX(12px);
+      transform: translateY(20px) translateX(12px);
       font-size: 1rem;
       width: 0px;
-      height: 22px;
+      height: 21px;
       padding: 0;
       white-space: nowrap;
     }
   }
 
   input {
-    height: 100%;
     background-color: transparent;
     border-radius: 4px;
-    height: calc(100% - 10px);
-    margin-top: 11px;
-    padding: 0 12px;
+    color: currentColor;
+    height: calc(100% - 14px);
     flex: 1;
+    margin-top: 0.75rem;
+    margin-left: 0.125rem;
+    margin-right: 0.125rem;
+    padding: 0 12px;
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
   }
 
   input.error,
@@ -69,6 +77,7 @@ export const Container = styled.div<InputStylesProps>`
   &:focus-within fieldset {
     legend {
       font-size: 0.875rem;
+      line-height: 1.313rem;
       margin-left: 5px;
       position: 0;
       padding: 0 4px;
@@ -95,6 +104,10 @@ export const InputButtonsAdornment = styled.div`
 
     :hover {
       background: ${transparentize(0.9, theme.colors.gray[500])};
+    }
+
+    svg {
+      color: currentColor;
     }
   }
 

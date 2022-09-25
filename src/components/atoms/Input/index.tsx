@@ -37,7 +37,7 @@ const Input = ({
   function changeClassNameFromInput(value: string, className: string) {
     if (value === '') {
       className = className.replace(' isValid', '')
-    } else {
+    } else if (!className.includes(' isValid')) {
       className = className + ' isValid'
     }
 
@@ -51,10 +51,12 @@ const Input = ({
       if (data.current.type === 'password') {
         refContainer.current.children[0].setAttribute('type', 'text')
         data.current.type = 'text'
+        currentTarget.title = 'Esconder senha'
         currentTarget.className += ' visibility'
       } else {
         refContainer.current.children[0].setAttribute('type', 'password')
         data.current.type = 'password'
+        currentTarget.title = 'Exibir senha'
         currentTarget.className = currentTarget.className.replace(
           ' visibility',
           ''
@@ -82,6 +84,7 @@ const Input = ({
             onClick={handleToggleTypeInput}
             type="button"
             className="input_button input_button-icon-password"
+            title="Exibir senha"
           >
             <div>
               <EyeIcon />
