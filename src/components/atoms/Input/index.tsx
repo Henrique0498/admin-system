@@ -1,9 +1,9 @@
 import { FocusEvent, useRef, MouseEvent } from 'react'
 
 import { InputProps } from './types'
+import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
 
 import * as S from './styles'
-import { HiEye, HiEyeOff } from 'react-icons/hi'
 
 const Input = ({
   label,
@@ -84,8 +84,8 @@ const Input = ({
             className="input_button input_button-icon-password"
           >
             <div>
-              <HiEye size={20} />
-              <HiEyeOff size={20} />
+              <EyeIcon />
+              <EyeSlashIcon />
             </div>
           </button>
         )}
