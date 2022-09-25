@@ -6,7 +6,7 @@ import { FormEvent } from 'react'
 // import { authentication } from 'services/login/singIn'
 // import { POST_AUTHENTICATION } from 'services/routesApi'
 import ButtonOutline from 'components/atoms/Button/Outline'
-import Input from 'components/atoms/Input'
+import { Input } from 'components/atoms/Input'
 import useForm from 'hook/useForm'
 // import useAuth from 'context/GlobalAuth/useAuth'
 
