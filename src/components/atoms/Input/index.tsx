@@ -10,6 +10,7 @@ const Input = ({ label }: InputProps) => {
       e.target.value,
       e.target.className
     )
+    e.target.setAttribute('error', 'true')
   }
 
   function changeClassNameFromInput(value: string, className: string) {
