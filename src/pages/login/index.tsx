@@ -7,7 +7,7 @@ import SingUp from 'components/pages/Login/SingUp'
 import * as S from './styles'
 import { Grid } from '@mui/material'
 import useMedia from 'hook/useMedia'
-import ButtonLink from 'components/atoms/Button/Link'
+import { ButtonLink } from 'components/atoms/Button/Link'
 
 const Login = () => {
   const [path, setPath] = useState<'singIn' | 'singUp'>('singIn')

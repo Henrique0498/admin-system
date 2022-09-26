@@ -1,5 +1,3 @@
-import { SiLinkedin } from 'react-icons/si'
-import { FaGoogle, FaFacebookF } from 'react-icons/fa'
 import { FormEvent } from 'react'
 // import { toast } from 'react-toastify'
 
@@ -7,10 +5,13 @@ import { FormEvent } from 'react'
 // import { POST_AUTHENTICATION } from 'services/routesApi'
 import ButtonOutline from 'components/atoms/Button/Outline'
 import { Input } from 'components/atoms/Input'
+import { ButtonLink } from 'components/atoms/Button/Link'
 import useForm from 'hook/useForm'
 // import useAuth from 'context/GlobalAuth/useAuth'
 
 import * as S from './styles'
+import { Icon } from 'components/atoms/Icon'
+import Typography from 'components/atoms/Typography'
 
 const SingIn = () => {
   const { register, getValue } = useForm()
@@ -50,35 +51,42 @@ const SingIn = () => {
 
   return (
     <S.Container>
+      <S.Background>
+        <Icon
+          icon="iconBackgroundBalls"
+          className="background-icon_top_right"
+        />
+        <Icon
+          icon="iconBackgroundBalls"
+          className="background-icon_bottom_left"
+        />
+      </S.Background>
       <S.Header>
-        <h2>Entrar</h2>
+        <Typography type="h2">Entrar</Typography>
       </S.Header>
-      <S.FirebaseContainer>
-        <S.FirebaseIcon className="shadow-sm">
-          <FaGoogle />
-        </S.FirebaseIcon>
-        <S.FirebaseIcon className="shadow-sm">
-          <FaFacebookF />
-        </S.FirebaseIcon>
-        <S.FirebaseIcon className="shadow-sm">
-          <SiLinkedin />
-        </S.FirebaseIcon>
-      </S.FirebaseContainer>
       <S.Body onSubmit={handleSubmit}>
-        <Input
-          label="Usuário ou email:"
-          {...register('singInUser', {
-            isRequired: true
-          })}
-        />
+        <div className="container_input">
+          <Input
+            label="Usuário ou email:"
+            {...register('singInUser', {
+              isRequired: true
+            })}
+          />
 
-        <Input
-          label="Senha:"
-          type="password"
-          {...register('singInPassword', {
-            isRequired: true
-          })}
-        />
+          <Input
+            label="Senha:"
+            type="password"
+            {...register('singInPassword', {
+              isRequired: true
+            })}
+          />
+        </div>
+
+        <div className="recover-password">
+          <ButtonLink>
+            <Typography type="subtitle">recuperar senha</Typography>
+          </ButtonLink>
+        </div>
 
         <div className="containerButton">
           <ButtonOutline size="large" color="violet" type="submit">

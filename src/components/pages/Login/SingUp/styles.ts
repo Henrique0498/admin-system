@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const Container = styled.div`
   padding: 16px 0;
   width: 100%;
+  position: relative;
 
   ul.slick-dots {
     button {
@@ -19,6 +20,10 @@ export const Container = styled.div`
       }
     }
   }
+`
+
+export const Background = styled.div`
+  position: absolute;
 `
 
 export const Header = styled.div`
@@ -100,6 +105,7 @@ export const Pagination = styled.div`
   padding: 32px;
   display: grid;
   gap: 20px;
+  z-index: 10;
 `
 export const Confirm = styled.div`
   display: flex;

@@ -13,7 +13,7 @@ import ButtonOutline from 'components/atoms/Button/Outline'
 
 import * as S from './styles'
 import Checkbox from 'components/atoms/Checkbox'
-import ButtonLink from 'components/atoms/Button/Link'
+import { ButtonLink } from 'components/atoms/Button/Link'
 import TermsOfServices from 'components/organisms/TermsOfService'
 
 const SingUp = () => {
@@ -80,6 +80,7 @@ const SingUp = () => {
         </S.FirebaseIcon>
       </S.FirebaseContainer>
       <S.Body onSubmit={handleSubmit}>
+        <S.Background>bgsda</S.Background>
         <S.Pagination>
           <Input
             label="Usuário"
