@@ -1,19 +1,16 @@
 import { ButtonProps } from '../types'
 
 import * as S from './styles'
-const ButtonLink = ({
+export function ButtonLink({
   children,
-  color = 'purple',
-  size = 'medium',
+  color = 'violet',
   type = 'button',
   ...props
-}: ButtonProps) => {
+}: ButtonProps) {
   return (
-    <S.Container size={size} color={color} type={type} {...props}>
+    <S.Container color={color} type={type} {...props}>
       {children}
       <span className="background" />
     </S.Container>
   )
 }
-
-export default ButtonLink
