@@ -1,16 +1,22 @@
 import { ReactNode } from 'react'
 
 export interface TypographyProps {
-  type: TypesElement
-  asComport?: TypesElement
+  type: TypeTypographyElement
+  asComport?: TypeTypographyElement
   children: ReactNode
 }
 
-type TypesElement =
+export interface TypeStyledTypography {
+  type: TypeTypographyElement
+  asComport?: TypeTypographyElement
+}
+
+export type TypeTypographyElement =
   | 'h1'
   | 'h2'
   | 'h3'
   | 'h4'
+  | 'h5'
   | 'h6'
   | 'subtitle'
   | 'body'
