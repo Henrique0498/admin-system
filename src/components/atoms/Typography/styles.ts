@@ -18,7 +18,47 @@ const translateElement = {
 function getStyles(type: TypeTypographyElement) {
   switch (type) {
     case 'h1':
-      return css``
+      return css`
+        font-size: 4rem;
+        line-height: 5rem;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+      `
+    case 'h2':
+      return css`
+        font-size: 3rem;
+        line-height: 3.75rem;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+      `
+    case 'h3':
+      return css`
+        font-size: 2.125rem;
+        line-height: 2.625rem;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+      `
+    case 'h4':
+      return css`
+        font-size: 1.5rem;
+        line-height: 2.875rem;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+      `
+    case 'h5':
+      return css`
+        font-size: 1.25rem;
+        line-height: 1.625rem;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+      `
+    case 'h6':
+      return css`
+        font-size: 1rem;
+        line-height: 1.25rem;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+      `
     default:
       return css``
   }
@@ -29,7 +69,7 @@ export const Container = styled('h1').attrs<TypeStyledTypography>(
     as: translateElement[type]
   })
 )<TypeStyledTypography>`
-  ${({ asComport }) => getStyles(asComport ?? 'body')}
+  ${({ asComport, type }) => getStyles(asComport ?? type)}
   color: currentColor;
   margin: 0;
 `
