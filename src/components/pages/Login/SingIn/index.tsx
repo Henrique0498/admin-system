@@ -83,9 +83,7 @@ const SingIn = () => {
         </div>
 
         <div className="recover-password">
-          <ButtonLink>
-            <Typography type="subtitle">recuperar senha</Typography>
-          </ButtonLink>
+          <ButtonLink>Recuperar senha</ButtonLink>
         </div>
 
         <div className="containerButton">
