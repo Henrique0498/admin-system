@@ -1,21 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ButtonOutline/> should render correctly 1`] = `
+.c1 {
+  font-size: 1rem;
+  line-height: 1.25rem;
+  font-family: 'Roboto',sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: currentColor;
+}
+
 .c0 {
-  padding: 0.625rem 1.25rem;
-  font-size: 0.875rem;
-  color: #a855f7;
-  border: 2px solid #a855f7;
   background: linear-gradient( 90deg, transparent 50%, #a855f7 50% );
+  border: 2px solid #a855f7;
+  color: #a855f7;
+  padding: 0.75rem 1.5rem;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-size: 210%;
   border-radius: 4px;
-  font-weight: 400;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  background-size: 210%;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
 }
 
 .c0:focus,
@@ -33,6 +52,11 @@ exports[`<ButtonOutline/> should render correctly 1`] = `
   color="purple"
   type="button"
 >
-  Button
+  <span
+    class="c1"
+    type="function_text"
+  >
+    Button
+  </span>
 </button>
 `

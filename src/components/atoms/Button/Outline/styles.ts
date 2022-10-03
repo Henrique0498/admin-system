@@ -16,39 +16,28 @@ function getPadding(size: SizeType) {
     case 'large':
       return '1rem 2rem'
     default:
-      return '0.625rem 1.25rem'
-  }
-}
-
-function getFontSize(size: SizeType) {
-  switch (size) {
-    case 'small':
-      return '0.75rem'
-    case 'large':
-      return '1rem'
-    default:
-      return '0.875rem'
+      return '0.75rem 1.5rem'
   }
 }
 
 export const Container = styled.button<ContainerProps>`
   ${({ size, color }) => css`
-    padding: ${getPadding(size)};
-    font-size: ${getFontSize(size)};
-    color: ${({ theme }) => theme.colors[color][500]};
-    border: 2px solid ${({ theme }) => theme.colors[color][500]};
     background: linear-gradient(
       90deg,
       transparent 50%,
       ${({ theme }) => theme.colors[color][500]} 50%
     );
+    border: 2px solid ${({ theme }) => theme.colors[color][500]};
+    color: ${({ theme }) => theme.colors[color][500]};
+    padding: ${getPadding(size)};
   `}
-  border-radius: 4px;
-  font-weight: 400;
-  user-select: none;
+  align-items: center;
   background-size: 210%;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
   transition: ${({ theme }) => theme.animation.duration.medium};
-
+  user-select: none;
   :focus,
   :hover {
     background-position-x: 98%;
