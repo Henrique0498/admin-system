@@ -123,6 +123,7 @@ export const InputButtonsAdornment = styled.div`
 
       svg {
         position: absolute;
+        color: ${({ theme }) => theme.colors.gray[500]};
       }
 
       svg:first-child {

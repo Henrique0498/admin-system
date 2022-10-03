@@ -105,7 +105,9 @@ export function Input({
       <input
         {...props}
         type={data.current.type}
-        className={`input_selector ${props.className ?? ''} isInvalid`}
+        className={`input_selector ${props.className ?? ''} ${
+          props.defaultValue && props.value ? 'isValid' : ''
+        }`}
         onBlur={handleOnBlur}
         onChange={handleOnChange}
       />
