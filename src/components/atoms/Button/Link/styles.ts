@@ -14,6 +14,9 @@ export const Container = styled.button<ContainerProps>`
     }
   `}
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   transition: ${({ theme }) => theme.animation.duration.medium};
   user-select: none;
