@@ -12,7 +12,9 @@ const translateElement = {
   body: 'p',
   'body-sm': 'p',
   'body-xs': 'p',
-  'body-xxs': 'p'
+  'body-xxs': 'p',
+  function_text: 'span',
+  'function_text-sm': 'span'
 }
 
 function getStyles(type: TypeTypographyElement) {
@@ -21,46 +23,93 @@ function getStyles(type: TypeTypographyElement) {
       return css`
         font-size: 4rem;
         line-height: 5rem;
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Poppins, Roboto', sans-serif;
         font-weight: 500;
       `
     case 'h2':
       return css`
         font-size: 3rem;
         line-height: 3.75rem;
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Poppins, Roboto', sans-serif;
         font-weight: 500;
       `
     case 'h3':
       return css`
         font-size: 2.125rem;
         line-height: 2.625rem;
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Poppins, Roboto', sans-serif;
         font-weight: 500;
       `
     case 'h4':
       return css`
         font-size: 1.5rem;
         line-height: 2.875rem;
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Poppins, Roboto', sans-serif;
         font-weight: 500;
       `
     case 'h5':
       return css`
         font-size: 1.25rem;
         line-height: 1.625rem;
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Poppins, Roboto', sans-serif;
         font-weight: 500;
       `
     case 'h6':
       return css`
         font-size: 1rem;
         line-height: 1.25rem;
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Poppins, Roboto', sans-serif;
         font-weight: 500;
       `
+    case 'subtitle':
+      return css`
+        font-size: 0.875rem;
+        line-height: 1.063rem;
+        font-family: 'Poppins, Roboto', sans-serif;
+        font-weight: 500;
+      `
+    case 'function_text':
+      return css`
+        font-size: 1rem;
+        line-height: 1.25rem;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
+      `
+    case 'function_text-sm':
+      return css`
+        font-size: 0.875rem;
+        line-height: 1.313rem;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
+      `
+    case 'body-sm':
+      return css`
+        font-size: 0.875rem;
+        line-height: 1.313rem;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+      `
+    case 'body-xs':
+      return css`
+        font-size: 0.75rem;
+        line-height: 1.125rem;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+      `
+    case 'body-xxs':
+      return css`
+        font-size: 0.625rem;
+        line-height: 0.938rem;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+      `
     default:
-      return css``
+      return css`
+        font-size: 1rem;
+        line-height: 1.25rem;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+      `
   }
 }
 
@@ -72,4 +121,5 @@ export const Container = styled('h1').attrs<TypeStyledTypography>(
   ${({ asComport, type }) => getStyles(asComport ?? type)}
   color: currentColor;
   margin: 0;
+  padding: 0;
 `
