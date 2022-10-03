@@ -23,5 +23,6 @@ export type TypeTypographyElement =
   | 'body-sm'
   | 'body-xs'
   | 'body-xxs'
-  | 'function_text'
   | 'function_text-sm'
+  | 'function_text'
+  | 'function_text-lg'

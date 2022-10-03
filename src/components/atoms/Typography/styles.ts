@@ -14,7 +14,8 @@ const translateElement = {
   'body-xs': 'p',
   'body-xxs': 'p',
   function_text: 'span',
-  'function_text-sm': 'span'
+  'function_text-sm': 'span',
+  'function_text-lg': 'span'
 }
 
 function getStyles(type: TypeTypographyElement) {
@@ -74,6 +75,7 @@ function getStyles(type: TypeTypographyElement) {
         line-height: 1.25rem;
         font-family: 'Roboto', sans-serif;
         font-weight: 500;
+        text-transform: uppercase;
       `
     case 'function_text-sm':
       return css`
@@ -81,6 +83,15 @@ function getStyles(type: TypeTypographyElement) {
         line-height: 1.313rem;
         font-family: 'Roboto', sans-serif;
         font-weight: 500;
+        text-transform: uppercase;
+      `
+    case 'function_text-lg':
+      return css`
+        font-size: 1.25rem;
+        line-height: 1.875rem;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
+        text-transform: uppercase;
       `
     case 'body-sm':
       return css`
@@ -120,6 +131,4 @@ export const Container = styled('h1').attrs<TypeStyledTypography>(
 )<TypeStyledTypography>`
   ${({ asComport, type }) => getStyles(asComport ?? type)}
   color: currentColor;
-  margin: 0;
-  padding: 0;
 `
