@@ -1,14 +1,14 @@
-import Typography from 'components/atoms/Typography'
+import { Typography } from 'components/atoms/Typography'
 import { ButtonProps } from '../types'
 import * as S from './styles'
 
-const ButtonOutline = ({
+export function ButtonOutline({
   children,
   color = 'purple',
   size = 'medium',
   type = 'button',
   ...props
-}: ButtonProps) => {
+}: ButtonProps) {
   const sizeText =
     size === 'small'
       ? 'function_text-sm'
@@ -22,5 +22,3 @@ const ButtonOutline = ({
     </S.Container>
   )
 }
-
-export default ButtonOutline

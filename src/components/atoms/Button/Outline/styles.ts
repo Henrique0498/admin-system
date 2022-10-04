@@ -27,7 +27,7 @@ export const Container = styled.button<ContainerProps>`
       transparent 50%,
       ${({ theme }) => theme.colors[color][500]} 50%
     );
-    border: 2px solid ${({ theme }) => theme.colors[color][500]};
+    border: 1px solid ${({ theme }) => theme.colors[color][500]};
     color: ${({ theme }) => theme.colors[color][500]};
     padding: ${getPadding(size)};
   `}

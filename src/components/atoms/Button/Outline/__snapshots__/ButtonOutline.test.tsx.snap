@@ -12,7 +12,7 @@ exports[`<ButtonOutline/> should render correctly 1`] = `
 
 .c0 {
   background: linear-gradient( 90deg, transparent 50%, #a855f7 50% );
-  border: 2px solid #a855f7;
+  border: 1px solid #a855f7;
   color: #a855f7;
   padding: 0.75rem 1.5rem;
   -webkit-align-items: center;

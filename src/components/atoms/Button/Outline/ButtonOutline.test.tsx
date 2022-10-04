@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components'
 
 import theme from '../../../../styles/theme'
 
-import ButtonOutline from './index'
+import { ButtonOutline } from './index'
 
 describe('<ButtonOutline/>', () => {
   it('should render the heading', () => {
