@@ -1,66 +1,53 @@
 import { FormEvent } from 'react'
-// import { toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 
-// import { authentication } from 'services/login/singIn'
-// import { POST_AUTHENTICATION } from 'services/routesApi'
-import ButtonOutline from 'components/atoms/Button/Outline'
+import { authentication } from 'services/login/singIn'
+import { POST_AUTHENTICATION } from 'services/routesApi'
+import { ButtonOutline } from 'components/atoms/Button/Outline'
 import { Input } from 'components/atoms/Input'
 import { ButtonLink } from 'components/atoms/Button/Link'
+import { Typography } from 'components/atoms/Typography'
 import useForm from 'hook/useForm'
-// import useAuth from 'context/GlobalAuth/useAuth'
+import useAuth from 'context/GlobalAuth/useAuth'
 
 import * as S from './styles'
-import { Icon } from 'components/atoms/Icon'
-import Typography from 'components/atoms/Typography'
 
 const SingIn = () => {
-  const { register, getValue } = useForm()
-  // const password = useForm('password')
-  // const auth = useAuth()
+  const { register, getValue, validationAll } = useForm()
+  const auth = useAuth()
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
-    console.log(getValue())
+    if (validationAll()) {
+      const keysInputs = Object.keys(getValue())
+      const values = getValue()
+      const keyInputError = keysInputs.find((key) => values[key].error) ?? ''
 
-    // const data = [user, password]
+      toast.error(values[keyInputError].message)
+    } else {
+      const values = getValue()
 
-    // if (!data.every((item) => item.validate())) {
-    //   let message = 'Por favor, preencha os campos corretamente.'
-
-    //   data.map((item) => {
-    //     if (item.error) {
-    //       message = item.error
-    //     }
-    //     return item
-    //   })
-
-    //   toast.error(message)
-    // } else {
-    //   await authentication({
-    //     url: POST_AUTHENTICATION,
-    //     username: user.value,
-    //     password: password.value
-    //   })
-    //     .then(({ data }) => auth?.setUser(data))
-    //     .catch((err) => {
-    //       toast.error(err?.response?.data?.error ?? 'Erro desconhecido')
-    //     })
-    // }
+      await authentication({
+        url: POST_AUTHENTICATION,
+        username: values.singInUser.value,
+        password: values.singInPassword.value
+      })
+        .then(({ data }) => {
+          if (auth) {
+            auth.setUser(data)
+          } else {
+            toast.error('Erro de sistema')
+          }
+        })
+        .catch((err) => {
+          toast.error(err?.response?.data?.error ?? 'Erro desconhecido')
+        })
+    }
   }
 
   return (
     <S.Container>
-      <S.Background>
-        <Icon
-          icon="iconBackgroundBalls"
-          className="background-icon_top_right"
-        />
-        <Icon
-          icon="iconBackgroundBalls"
-          className="background-icon_bottom_left"
-        />
-      </S.Background>
       <S.Header>
         <Typography type="h2">Entrar</Typography>
       </S.Header>
@@ -86,7 +73,7 @@ const SingIn = () => {
           <ButtonLink>Recuperar senha</ButtonLink>
         </div>
 
-        <div className="containerButton">
+        <div className="container_button">
           <ButtonOutline size="large" color="violet" type="submit">
             Entrar
           </ButtonOutline>
