@@ -1,13 +1,11 @@
+import { getStylesTypography } from 'components/atoms/Typography/styles'
 import styled, { css } from 'styled-components'
-import { ColorsType } from 'types/system'
+import { TypeStylesButtonLink } from '../types'
 
-interface ContainerProps {
-  color: ColorsType
-}
-
-export const Container = styled.button<ContainerProps>`
-  ${({ color }) => css`
+export const Container = styled.button<TypeStylesButtonLink>`
+  ${({ color, typeText }) => css`
     color: ${({ theme }) => theme.colors[color][500]};
+    ${getStylesTypography(typeText)}
 
     :hover {
       color: ${({ theme }) => theme.colors[color][600]};

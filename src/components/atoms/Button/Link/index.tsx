@@ -1,15 +1,16 @@
-import { ButtonProps } from '../types'
+import { TypeButtonLink } from '../types'
 
 import * as S from './styles'
 export function ButtonLink({
   children,
   color = 'violet',
   type = 'button',
+  typeText = 'body-bold',
   ...props
-}: ButtonProps) {
+}: TypeButtonLink) {
   return (
-    <S.Container color={color} type={type} {...props}>
-      {children}
+    <S.Container color={color} typeText={typeText} type={type} {...props}>
+      <span>{children}</span>
       <span className="background" />
     </S.Container>
   )
