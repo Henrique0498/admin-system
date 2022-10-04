@@ -18,6 +18,12 @@ type TypeReturnGetValue = {
   message: string
 }
 
+type TypeSetProps = {
+  element: HTMLInputElement
+  error: boolean
+  message: string
+}
+
 const masks = {
   cep: mask.maskCep
 }
@@ -51,7 +57,6 @@ function useForm() {
   const validate = useCallback(
     (data: TypeData) => {
       if (data.value === '' && data.isRequired) {
-        console.log(data)
         return {
           error: true,
           message: 'Campo Obrigatório'
@@ -74,47 +79,65 @@ function useForm() {
     [validateFromType]
   )
 
-  //função pra validar se o campo está preenchido
-  const validateRequired = useCallback((element: HTMLInputElement) => {
-    const inputPropsCurrent = data.current[element.id]
+  //seta as novas propriedades de validação
+  const setPropsValidation = useCallback(
+    ({ element, error, message }: TypeSetProps) => {
+      const inputPropsCurrent = data.current[element.id]
 
-    if (element.value === '') {
-      inputPropsCurrent.error = true
-      inputPropsCurrent.message = 'Campo obrigatório'
-      element.className = element.className + ' error'
-    } else {
-      inputPropsCurrent.error = false
-      inputPropsCurrent.message = ''
-      element.className = element.className.replace(' error', '')
-    }
-  }, [])
+      if (error && !element.className.includes(' error')) {
+        inputPropsCurrent.error = true
+        inputPropsCurrent.message = message
+        element.className += ' error'
+      } else if (!error) {
+        inputPropsCurrent.error = false
+        inputPropsCurrent.message = ''
+        element.className = element.className.replace(' error', '')
+      }
+    },
+    []
+  )
 
   //testa todos os elementos
   const validationAll = useCallback(() => {
     const keyOfsData = Object.keys(data.current)
+    let isExistError = false
 
-    return keyOfsData.every((key) => validate(data.current[key]).error)
-  }, [validate])
+    keyOfsData.map((key) => {
+      const isValid = validate(data.current[key])
+      const element =
+        data.current[key].element ??
+        (document.getElementById(data.current[key].id) as HTMLInputElement)
+
+      if (element) {
+        setPropsValidation({
+          element,
+          ...isValid
+        })
+      }
+
+      if (isValid.error) {
+        isExistError = true
+      }
+
+      return null
+    })
+
+    return isExistError
+  }, [setPropsValidation, validate])
 
   //função executada quando o usuário tira o focus do input
   const onBlur = useCallback(
     (element: ChangeEvent<HTMLInputElement>) => {
       const { target } = element
       const inputPropsCurrent = data.current[target.id]
+      const isValid = validate(inputPropsCurrent)
 
-      const { error, message } = validate(inputPropsCurrent)
-
-      if (error) {
-        inputPropsCurrent.error = true
-        inputPropsCurrent.message = message
-        target.className = target.className + ' error'
-      } else {
-        inputPropsCurrent.error = false
-        inputPropsCurrent.message = ''
-        target.className = target.className.replace(' error', '')
-      }
+      setPropsValidation({
+        element: target,
+        ...isValid
+      })
     },
-    [validate]
+    [setPropsValidation, validate]
   )
 
   //função pra aplicar mascara
@@ -140,7 +163,14 @@ function useForm() {
       const inputPropsCurrent = data.current[target.id]
 
       inputPropsCurrent?.mask && applyMask(target)
-      inputPropsCurrent.isRequired && validateRequired(target)
+
+      if (inputPropsCurrent.isRequired) {
+        setPropsValidation({
+          element: target,
+          error: target.value === '',
+          message: 'Campo obrigatório.'
+        })
+      }
 
       data.current[target.id] = {
         ...inputPropsCurrent,
@@ -148,7 +178,7 @@ function useForm() {
         value: target.value
       }
     },
-    [validateRequired, applyMask]
+    [applyMask, setPropsValidation]
   )
 
   //retorna todos os valores
