@@ -1,21 +1,16 @@
-import { Checkbox as CheckboxMui } from '@mui/material'
-
 import * as S from './styles'
 import { CheckboxProps } from './types'
 
-const Checkbox = ({ children, onChange, ...props }: CheckboxProps) => {
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (onChange) {
-      onChange(event.target.checked)
-    }
-  }
-
+export function Checkbox({ children }: CheckboxProps) {
   return (
     <S.Container>
-      <CheckboxMui {...props} onChange={handleChange} />
+      <input
+        type="checkbox"
+        name="teste"
+        id="teste"
+        onChange={(e) => console.log(e)}
+      />
       {children}
     </S.Container>
   )
 }
-
-export default Checkbox
