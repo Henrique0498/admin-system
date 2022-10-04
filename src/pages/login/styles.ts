@@ -77,6 +77,29 @@ export const ContainerMobileLogin = styled.div`
   height: 700px;
 `
 
+export const Background = styled.div`
+  color: ${({ theme }) => theme.colors.purple[200]};
+  height: calc(100% - 2rem);
+  left: 1rem;
+  position: absolute;
+  top: 1rem;
+  width: calc(100% - 2rem);
+  z-index: -1;
+
+  .background-icon_top_right {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .background-icon_bottom_left {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    transform: rotate(180deg);
+  }
+`
+
 export const LoginMobileCard = styled.div`
   position: absolute;
   width: 100%;
@@ -88,8 +111,7 @@ export const LoginMobileCard = styled.div`
   text-align: center;
 
   > p {
-    margin-bottom: 2rem;
-    padding: 0 2rem;
+    padding: 1rem 0 1.5rem;
   }
 
   &.active {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import ButtonOutline from 'components/atoms/Button/Outline'
+import { ButtonOutline } from 'components/atoms/Button/Outline'
 import SingIn from 'components/pages/Login/SingIn'
 import SingUp from 'components/pages/Login/SingUp'
 
@@ -8,6 +8,8 @@ import * as S from './styles'
 import { Grid } from '@mui/material'
 import useMedia from 'hook/useMedia'
 import { ButtonLink } from 'components/atoms/Button/Link'
+import { Typography } from 'components/atoms/Typography'
+import { Icon } from 'components/atoms/Icon'
 
 const Login = () => {
   const [path, setPath] = useState<'singIn' | 'singUp'>('singIn')
@@ -39,11 +41,21 @@ const Login = () => {
                 render ? (path === 'singIn' ? 'first' : 'two') : 'active'
               }`}
             >
+              <S.Background>
+                <Icon
+                  icon="iconBackgroundBalls"
+                  className="background-icon_top_right"
+                />
+                <Icon
+                  icon="iconBackgroundBalls"
+                  className="background-icon_bottom_left"
+                />
+              </S.Background>
               <SingIn />
-              <p>
-                Não possui cadastro?
+              <Typography>
+                {'Não possui cadastro? '}
                 <ButtonLink onClick={handleChangePage}>Cadastre-se</ButtonLink>
-              </p>
+              </Typography>
             </S.LoginMobileCard>
 
             <S.LoginMobileCard
