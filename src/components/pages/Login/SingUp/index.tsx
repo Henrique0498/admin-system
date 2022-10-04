@@ -1,20 +1,19 @@
 import React, { FormEvent, useState } from 'react'
 // import { toast } from 'react-toastify'
-import { SiLinkedin } from 'react-icons/si'
-import { FaGoogle, FaFacebookF } from 'react-icons/fa'
 
 // import { POST_AUTHENTICATION, POST_CREATE_USER } from 'services/routesApi'
 // import { createUser } from 'services/login/singUp'
 // import { authentication } from 'services/login/singIn'
 import { Input } from 'components/atoms/Input'
-import ButtonOutline from 'components/atoms/Button/Outline'
+import { ButtonOutline } from 'components/atoms/Button/Outline'
 // import useForm from 'hook/useForm'
 // import useAuth from 'context/GlobalAuth/useAuth'
 
 import * as S from './styles'
-import Checkbox from 'components/atoms/Checkbox'
+import { Checkbox } from 'components/atoms/Checkbox'
 import { ButtonLink } from 'components/atoms/Button/Link'
 import TermsOfServices from 'components/organisms/TermsOfService'
+import { Typography } from 'components/atoms/Typography'
 
 const SingUp = () => {
   // const username = useForm('username')
@@ -66,22 +65,10 @@ const SingUp = () => {
   return (
     <S.Container>
       <S.Header>
-        <h2>Cadastrar</h2>
+        <Typography type="h2">Registrar</Typography>
       </S.Header>
-      <S.FirebaseContainer>
-        <S.FirebaseIcon className="shadow-sm">
-          <FaGoogle />
-        </S.FirebaseIcon>
-        <S.FirebaseIcon className="shadow-sm">
-          <FaFacebookF />
-        </S.FirebaseIcon>
-        <S.FirebaseIcon className="shadow-sm">
-          <SiLinkedin />
-        </S.FirebaseIcon>
-      </S.FirebaseContainer>
       <S.Body onSubmit={handleSubmit}>
-        <S.Background>bgsda</S.Background>
-        <S.Pagination>
+        <div className="container_input">
           <Input
             label="Usuário"
             // {...username}
@@ -98,26 +85,25 @@ const SingUp = () => {
             //  {...email}
           />
 
-          <S.Confirm>
-            <Checkbox
-              checked={termsOfServices}
-              onChange={(value) => setTermsOfServices(value)}
-            >
-              Aceito os termos de contrato.
-              <ButtonLink onClick={() => setTermsOfServicesModal(true)}>
-                Ler aqui
-              </ButtonLink>
-            </Checkbox>
-            <TermsOfServices
-              open={termsOfServicesModal}
-              close={setTermsOfServicesModal}
-            />
-          </S.Confirm>
-        </S.Pagination>
-
-        <ButtonOutline size="large" color="violet" type="submit">
-          Cadastrar
-        </ButtonOutline>
+          <Checkbox
+            checked={termsOfServices}
+            onChange={() => setTermsOfServices(true)}
+          >
+            <Typography>Aceito os termos de contrato.</Typography>
+            <ButtonLink onClick={() => setTermsOfServicesModal(true)}>
+              Ler aqui
+            </ButtonLink>
+          </Checkbox>
+          <TermsOfServices
+            open={termsOfServicesModal}
+            close={setTermsOfServicesModal}
+          />
+        </div>
+        <div className="container_button">
+          <ButtonOutline size="large" color="violet" type="submit">
+            Cadastrar
+          </ButtonOutline>
+        </div>
       </S.Body>
     </S.Container>
   )
