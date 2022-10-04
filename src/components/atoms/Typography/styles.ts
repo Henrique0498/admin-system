@@ -10,6 +10,7 @@ const translateElement = {
   h6: 'h6',
   subtitle: 'p',
   body: 'p',
+  'body-bold': 'p',
   'body-sm': 'p',
   'body-xs': 'p',
   'body-xxs': 'p',
@@ -18,7 +19,7 @@ const translateElement = {
   'function_text-lg': 'span'
 }
 
-function getStyles(type: TypeTypographyElement) {
+export function getStylesTypography(type: TypeTypographyElement) {
   switch (type) {
     case 'h1':
       return css`
@@ -93,6 +94,13 @@ function getStyles(type: TypeTypographyElement) {
         font-weight: 500;
         text-transform: uppercase;
       `
+    case 'body-bold':
+      return css`
+        font-size: 0.875rem;
+        line-height: 1.313rem;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
+      `
     case 'body-sm':
       return css`
         font-size: 0.875rem;
@@ -129,6 +137,6 @@ export const Container = styled('h1').attrs<TypeStyledTypography>(
     as: translateElement[type]
   })
 )<TypeStyledTypography>`
-  ${({ asComport, type }) => getStyles(asComport ?? type)}
+  ${({ asComport, type }) => getStylesTypography(asComport ?? type)}
   color: currentColor;
 `

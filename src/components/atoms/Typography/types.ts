@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 
 export interface TypographyProps {
-  type: TypeTypographyElement
+  type?: TypeTypographyElement
   asComport?: TypeTypographyElement
   children: ReactNode
 }
@@ -20,6 +20,7 @@ export type TypeTypographyElement =
   | 'h6'
   | 'subtitle'
   | 'body'
+  | 'body-bold'
   | 'body-sm'
   | 'body-xs'
   | 'body-xxs'
