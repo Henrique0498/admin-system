@@ -1,3 +1,4 @@
+import { getStylesTypography } from 'components/atoms/Typography/styles'
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyles = createGlobalStyle`
@@ -23,7 +24,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-size:  0.875rem;
+     ${getStylesTypography('body')};
     font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
   }
 `
