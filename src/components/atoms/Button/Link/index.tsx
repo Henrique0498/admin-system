@@ -10,8 +10,7 @@ export function ButtonLink({
 }: TypeButtonLink) {
   return (
     <S.Container color={color} typeText={typeText} type={type} {...props}>
-      <span>{children}</span>
-      <span className="background" />
+      {children}
     </S.Container>
   )
 }
