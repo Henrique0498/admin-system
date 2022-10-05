@@ -89,7 +89,7 @@ const SingUp = () => {
             checked={termsOfServices}
             onChange={() => setTermsOfServices(true)}
           >
-            <Typography>Aceito os termos de contrato.</Typography>
+            Aceito os termos de contrato.
             <ButtonLink onClick={() => setTermsOfServicesModal(true)}>
               Ler aqui
             </ButtonLink>
