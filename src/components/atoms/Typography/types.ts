@@ -3,6 +3,7 @@ import { ReactNode } from 'react'
 export interface TypographyProps {
   type?: TypeTypographyElement
   asComport?: TypeTypographyElement
+  className?: string
   children: ReactNode
 }
 
