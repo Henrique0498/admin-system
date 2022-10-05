@@ -44,7 +44,7 @@ export const Container = styled.div<InputStylesProps>`
       font-weight: 400;
       height: 1.313rem;
       padding: 0rem;
-      transform: translateY(1.188rem) translateX(0.75rem);
+      transform: translateY(1.313rem) translateX(0.75rem);
       transition: 200ms ease-in-out;
       white-space: nowrap;
       width: 0rem;
