@@ -21,10 +21,10 @@ export const Container = styled.div<InputStylesProps>`
   `}
 
   display: flex;
+  flex-direction: row;
   height: 3.375rem;
   overflow: hidden;
   position: relative;
-  width: 100%;
 
   fieldset {
     border: 0.063rem solid currentColor;
@@ -55,7 +55,7 @@ export const Container = styled.div<InputStylesProps>`
     background-color: transparent;
     border-radius: 0.25rem;
     color: currentColor;
-    flex: 1;
+    width: 100%;
     font-weight: 400;
     height: calc(100% - 0.875rem);
     margin-top: 0.75rem;
