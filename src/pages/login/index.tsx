@@ -11,7 +11,7 @@ import { ButtonLink } from 'components/atoms/Button/Link'
 import { Typography } from 'components/atoms/Typography'
 import { Icon } from 'components/atoms/Icon'
 
-const Login = () => {
+export default function Login() {
   const [path, setPath] = useState<'singIn' | 'singUp'>('singIn')
   const [render, setRender] = useState(false)
   const mobile = useMedia('(max-width: 900px)')
@@ -41,19 +41,11 @@ const Login = () => {
                 render ? (path === 'singIn' ? 'first' : 'two') : 'active'
               }`}
             >
-              <S.Background>
-                <Icon
-                  icon="iconBackgroundBalls"
-                  className="background-icon_top_right"
-                />
-                <Icon
-                  icon="iconBackgroundBalls"
-                  className="background-icon_bottom_left"
-                />
-              </S.Background>
+              <BackgroundSing />
+
               <SingIn />
-              <Typography>
-                {'Não possui cadastro? '}
+              <Typography className="message_sing-up-in">
+                Não possui cadastro?{' '}
                 <ButtonLink onClick={handleChangePage}>Cadastre-se</ButtonLink>
               </Typography>
             </S.LoginMobileCard>
@@ -64,8 +56,8 @@ const Login = () => {
               }`}
             >
               <SingUp />
-              <p>
-                Já tem uma conta?
+              <p className="message-sing_up_in">
+                Já tem uma conta?{' '}
                 <ButtonLink onClick={handleChangePage}>Entre aqui</ButtonLink>
               </p>
             </S.LoginMobileCard>
@@ -116,4 +108,19 @@ const Login = () => {
   )
 }
 
-export default Login
+function BackgroundSing() {
+  return (
+    <>
+      <S.Background>
+        <Icon
+          icon="iconBackgroundBalls"
+          className="background-icon_top_right"
+        />
+        <Icon
+          icon="iconBackgroundBalls"
+          className="background-icon_bottom_left"
+        />
+      </S.Background>
+    </>
+  )
+}

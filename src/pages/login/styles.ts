@@ -75,6 +75,10 @@ export const ContainerMobileLogin = styled.div`
   justify-content: center;
   align-items: center;
   height: 700px;
+
+  .message_sing-up-in {
+    margin: 0 1rem;
+  }
 `
 
 export const Background = styled.div`
